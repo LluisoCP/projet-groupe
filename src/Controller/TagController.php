@@ -15,13 +15,20 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TagController extends AbstractController
 {
+    private $repository;
+
+    public function __construct(TagRepository $repository)
+    {
+        $this->repository = $repository;        
+    }
+
     /**
      * @Route("/", name="tag_index", methods={"GET"})
      */
-    public function index(TagRepository $tagRepository): Response
+    public function index(): Response
     {
         return $this->render('tag/index.html.twig', [
-            'tags' => $tagRepository->findAll(),
+            'tags' => $this->repository->findAll(),
         ]);
     }
 

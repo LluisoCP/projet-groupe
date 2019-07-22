@@ -30,6 +30,6 @@ class PagesController extends AbstractController
      */
     public function contact()
     {
-        return $this->render('pages/about.html.twig');
+        return $this->render('pages/contact.html.twig');
     }
 }
