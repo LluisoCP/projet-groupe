@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Panier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Client;
+use App\Entity\Produit;
 
 /**
  * @method Panier|null find($id, $lockMode = null, $lockVersion = null)
@@ -36,15 +38,16 @@ class PanierRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Panier
+    public function findPanierByClientAndProduit(Client $client, Produit $produit): ?Panier
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.client = :cli')
+            ->setParameter('cli', $client)
+            ->andWhere('p.produit = :pro')
+            ->setParameter('pro', $produit)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

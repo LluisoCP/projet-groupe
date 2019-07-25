@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Panier
 {
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -21,7 +23,12 @@ class Panier
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date;
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
 
     /**
      * @ORM\Column(type="integer")
@@ -29,39 +36,52 @@ class Panier
     private $quantite;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $montant;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Client", inversedBy="panier", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client", inversedBy="paniers")
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="paniers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Produit", inversedBy="paniers")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $produits;
+    private $produit;
 
-    public function __construct()
-    {
-        $this->produits = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $montant;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $prix_unite;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->created_at;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->date = $date;
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
@@ -78,52 +98,50 @@ class Panier
         return $this;
     }
 
-    public function getMontant(): ?float
-    {
-        return $this->montant;
-    }
-
-    public function setMontant(?float $montant): self
-    {
-        $this->montant = $montant;
-
-        return $this;
-    }
-
     public function getClient(): ?Client
     {
         return $this->client;
     }
 
-    public function setClient(Client $client): self
+    public function setClient(?Client $client): self
     {
         $this->client = $client;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduits(): Collection
+    public function getProduit(): ?Produit
     {
-        return $this->produits;
+        return $this->produit;
     }
 
-    public function addProduit(Produit $produit): self
+    public function setProduit(?Produit $produit): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits[] = $produit;
-        }
+        $this->produit = $produit;
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): self
+    public function getMontant(): ?float
     {
-        if ($this->produits->contains($produit)) {
-            $this->produits->removeElement($produit);
-        }
+        return $this->montant;
+    }
+
+    public function setMontant(float $montant): self
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    public function getPrixUnite(): ?float
+    {
+        return $this->prix_unite;
+    }
+
+    public function setPrixUnite(float $prix_unite): self
+    {
+        $this->prix_unite = $prix_unite;
 
         return $this;
     }

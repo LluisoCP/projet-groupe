@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class Client implements UserInterface
 {
@@ -38,12 +38,12 @@ class Client implements UserInterface
     /**
      * @ORM\Column(type="string", length=31)
      */
-    private $prenom;
+    private $nom;
 
     /**
      * @ORM\Column(type="string", length=31)
      */
-    private $nom;
+    private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -51,7 +51,7 @@ class Client implements UserInterface
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=31)
+     * @ORM\Column(type="string", length=63)
      */
     private $ville;
 
@@ -63,17 +63,28 @@ class Client implements UserInterface
     /**
      * @ORM\Column(type="string", length=15)
      */
-    private $pays;
-
-    /**
-     * @ORM\Column(type="string", length=31)
-     */
     private $telephone;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Panier", mappedBy="client", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Panier", mappedBy="client", orphanRemoval=true)
      */
-    private $panier;
+    private $paniers;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
+
+    public function __construct()
+    {
+        $this->paniers = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime());
+    }
 
     public function getId(): ?int
     {
@@ -108,6 +119,8 @@ class Client implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        // $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -151,18 +164,6 @@ class Client implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -171,6 +172,18 @@ class Client implements UserInterface
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -211,18 +224,6 @@ class Client implements UserInterface
         return $this;
     }
 
-    public function getPays(): ?string
-    {
-        return $this->pays;
-    }
-
-    public function setPays(string $pays): self
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
     public function getTelephone(): ?string
     {
         return $this->telephone;
@@ -235,20 +236,70 @@ class Client implements UserInterface
         return $this;
     }
 
-    public function getPanier(): ?Panier
+    /**
+     * @return Collection|Panier[]
+     */
+    public function getPaniers(): Collection
     {
-        return $this->panier;
+        return $this->paniers;
     }
 
-    public function setPanier(Panier $panier): self
+    public function addPanier(Panier $panier): self
     {
-        $this->panier = $panier;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $panier->getClient()) {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers[] = $panier;
             $panier->setClient($this);
         }
 
         return $this;
+    }
+
+    public function removePanier(Panier $panier): self
+    {
+        if ($this->paniers->contains($panier)) {
+            $this->paniers->removeElement($panier);
+            // set the owning side to null (unless already changed)
+            if ($panier->getClient() === $this) {
+                $panier->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function findPanier(Produit $produit) : ?Panier
+    {
+        $paniers = $this->paniers;
+        foreach ($paniers as $panier) {
+            if ($panier->getProduit === $produit)
+            {
+                return $panier;
+            }
+        }
+        return null;
     }
 }

@@ -1,0 +1,30 @@
+/*
+fonts
+*/
+/*
+
+*/
+/*
+*/
+body {
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+}
+#header {
+    background-color: rgba(100, 100, 100, 1)
+}
+#nav {
+    background-color: rgba(2, 245, 2, .8)
+}
+#sidebar {
+    background-color: rgba(245, 2, 2, .8)
+}
+#body {
+    background-color: rgba(230, 230, 230, 1)
+}
+
+#footer {
+    background-color: rgba(2, 2, 245, .8)   
+}

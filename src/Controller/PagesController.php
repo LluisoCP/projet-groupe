@@ -25,11 +25,4 @@ class PagesController extends AbstractController
         return $this->render('pages/about.html.twig');
     }
 
-    /**
-     * @Route("/contact", name="contact", methods={"GET", "POST"})
-     */
-    public function contact()
-    {
-        return $this->render('pages/contact.html.twig');
-    }
 }

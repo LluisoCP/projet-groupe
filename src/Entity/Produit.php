@@ -19,7 +19,7 @@ class Produit
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=31)
      */
     private $reference;
 
@@ -34,9 +34,14 @@ class Produit
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=511)
+     * @ORM\Column(type="datetime")
      */
-    private $description;
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
 
     /**
      * @ORM\Column(type="float")
@@ -44,40 +49,36 @@ class Produit
     private $prix;
 
     /**
+     * @ORM\Column(type="string", length=511, nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $stock;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="produits")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="produits")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag")
      */
-    private $tag;
+    private $tags;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Panier", mappedBy="produits")
+     * @ORM\OneToMany(targetEntity="App\Entity\Panier", mappedBy="produit", orphanRemoval=true)
      */
     private $paniers;
 
     public function __construct()
     {
-        $this->tag = new ArrayCollection();
+        $this->tags = new ArrayCollection();
         $this->paniers = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime());
     }
 
     public function getId(): ?int
@@ -121,14 +122,26 @@ class Produit
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->description;
+        return $this->created_at;
     }
 
-    public function setDescription(string $description): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->description = $description;
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
@@ -145,6 +158,18 @@ class Produit
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     public function getStock(): ?int
     {
         return $this->stock;
@@ -153,30 +178,6 @@ class Produit
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -196,15 +197,15 @@ class Produit
     /**
      * @return Collection|Tag[]
      */
-    public function getTag(): Collection
+    public function getTags(): Collection
     {
-        return $this->tag;
+        return $this->tags;
     }
 
     public function addTag(Tag $tag): self
     {
-        if (!$this->tag->contains($tag)) {
-            $this->tag[] = $tag;
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
         }
 
         return $this;
@@ -212,8 +213,8 @@ class Produit
 
     public function removeTag(Tag $tag): self
     {
-        if ($this->tag->contains($tag)) {
-            $this->tag->removeElement($tag);
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
         }
 
         return $this;
@@ -231,7 +232,7 @@ class Produit
     {
         if (!$this->paniers->contains($panier)) {
             $this->paniers[] = $panier;
-            $panier->addProduit($this);
+            $panier->setProduit($this);
         }
 
         return $this;
@@ -241,7 +242,10 @@ class Produit
     {
         if ($this->paniers->contains($panier)) {
             $this->paniers->removeElement($panier);
-            $panier->removeProduit($this);
+            // set the owning side to null (unless already changed)
+            if ($panier->getProduit() === $this) {
+                $panier->setProduit(null);
+            }
         }
 
         return $this;
