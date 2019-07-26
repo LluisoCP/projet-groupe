@@ -8,11 +8,6 @@
         <label>Recherche</label>
         <input type="text" class="form-control" placeholder="Entrez le nom d'un produit" name="nom">
     </div>
-    <div class="form-group text-center">
-        <button type="submit" class="btn btn-sucess">Rechercher</button>
-    </div>
-</form>
-<form method="POST" action="{{url('home')}}">
     <div class="form-group">
         <label>Catégorie</label>
         <select class="form-control" placeholder="Choisissez une catégorie" name="cat">
@@ -21,16 +16,11 @@
             {% endfor %}
         </select>
     </div>
-    <div class="form-group text-center">
-        <button type="submit" class="btn btn-sucess">Rechercher</button>
-    </div>
-</form>
-<form method="POST" action="{{url('home')}}">
     <div class="form-group">
         <label>Budget</label>
         <input type="text" class="form-control" placeholder="Choisissez un budget" name="budget">
     </div>
-    <div class="form-group text-center">
+    <div class="text-center">
         <button type="submit" class="btn btn-sucess">Rechercher</button>
     </div>
 </form>
