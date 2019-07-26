@@ -247,7 +247,6 @@ class Produit
                 $panier->setProduit(null);
             }
         }
-
         return $this;
     }
 }
