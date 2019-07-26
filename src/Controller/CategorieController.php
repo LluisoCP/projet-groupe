@@ -56,7 +56,7 @@ class CategorieController extends AbstractController
     public function categorie_produits(Categorie $categorie)
     {
         $produits = $categorie->getProduits();
-        return $this->render()
+        return $this->render();
     }
 
     /**
