@@ -61,11 +61,13 @@
         <div class="container-fluid">
             
             <div class="row">
-                <div id="body" class="col-12 col-md-9 order-1 order-md-2">
+                <div id="body" class="col-12 col-md-9 order-1 order-md-2 py-3">
                     {% block body %}{% endblock %}
                 </div>
                 <div id="sidebar" class="col-12 col-md-3 order-2 order-md-1">
-                    {% block sidebar %}{% endblock %}
+                    {% block sidebar %}
+                        
+                    {% endblock %}
                 </div>
             </div>
         </div>

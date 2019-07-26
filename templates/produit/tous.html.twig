@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <h1 class="textcenter">Ici on affichera tous les produits.</h1>
+    <ul class="list-group-flush">
+
+        {% for produit in produits %}
+            <li class="list-item list-item-flush">{{ produit.nom }} à {{ produit.prix }}€</li>
+        {% endfor %}
+    
+    </ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits {{ tag | capitalize }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Produits {{ tag | capitalize }}</h1>
+    <div class="row">
+        {% for produit in produits %}
+            <div class="col-12 col-md-6">
+
+                <div class="card mb-3">
+                    <img    src="{{ produit.image ? asset('uploads/produits/') ~ voiture.image : asset('img/produits/default.jpg') }}"
+                    class="card-img-top produit-tag"
+                    alt="Image of produit {{ produit.nom }}"
+                    style="max-height:500px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.nom | capitalize }} -- {{produit.prix}}€</h5>
+                        <p class="card-text">{{ produit.description }}</p>
+                        <a href="{{ path('produit', {'id': produit.id}) }}" class="btn btn-success">Voir Produit</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <a class="btn btn-info" href="{{ path('home') }}">Retourner à l'accueil</a>
+
+
+{% endblock %}

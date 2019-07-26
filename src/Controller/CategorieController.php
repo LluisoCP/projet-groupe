@@ -15,20 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CategorieController extends AbstractController
 {
-    private $repository;
-
-    public function __construct(CategorieRepository $repository)
-    {
-        $this->repository = $repository;
-    }
-
+    
     /**
      * @Route("/", name="categorie_index", methods={"GET"})
      */
     public function index(): Response
     {
+        $categories = $this->repository->findAll();
         return $this->render('categorie/index.html.twig', [
-            'categories' => $this->repository->findAll(),
+            'categories' => $categories,
         ]);
     }
 
@@ -53,6 +48,15 @@ class CategorieController extends AbstractController
             'categorie' => $categorie,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{nom}", name="categorie_produits", methods={"GET"})
+     */
+    public function categorie_produits(Categorie $categorie)
+    {
+        $produits = $categorie->getProduits();
+        return $this->render()
     }
 
     /**

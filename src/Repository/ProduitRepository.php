@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Tag;
 
 /**
  * @method Produit|null find($id, $lockMode = null, $lockVersion = null)
@@ -23,11 +24,11 @@ class ProduitRepository extends ServiceEntityRepository
     //  * @return Produit[] Returns an array of Produit objects
     //  */
     /*
-    public function findByExampleField($value)
+    public function findByTag(Tag $tag)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.tags like :val')
+            ->setParameter('val', $tag)
             ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
@@ -35,6 +36,15 @@ class ProduitRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByPrice(float $price, string $order = 'ASC')
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.prix <= :val')
+            ->setParameter('val', $price)
+            ->orderBy('p.prix', $order)
+            ->getQuery()
+            ->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Produit
