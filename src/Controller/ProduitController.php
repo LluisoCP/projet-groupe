@@ -28,7 +28,7 @@ class ProduitController extends AbstractController
      */
     public function per_prix(ProduitRepository $produit_repository , $montant)
     {
-        $produits = $produit_repository->findByPrice($montant, 'DESC');
+        $produits = $produit_repository->findByPrice($montant, 'DESC'); //C'est 'ASC' par défaut
         return $this->render('produit/tous.html.twig', [
             'produits' => $produits
         ]);
@@ -42,33 +42,6 @@ class ProduitController extends AbstractController
     {
         return $this->render('produit/show.html.twig', [
             'produit' => $produit
-        ]);
-    }
-
-
-
-    //Cette route ne sert à rien, efface-la
-    /**
-     * @Route("/produits/{cat}", name="produits_par_cat", methods={"GET", "POST"})
-     */
-    public function produits_cat(ProduitRepository $produit_repository, CategorieRepository $category_repository, $cat)
-    {
-        $categorie = $category_repository->findOneBy(['nom' => $cat]);
-        $produits = $produit_repository->findBy(['categorie' => $categorie]);
-        return $this->render('produit/produit_categorie.html.twig', [
-            'produits' => $produits
-        ]);
-    }
-    // Est-ce que ces deux routes auront du conflit  ?? On change la route à /produit/categorie/{cat} et /produit/label/{tag} ??
-    /**
-     * @Route("/produits/{tag}", name="produits_par_tag", methods={"GET", "POST"})
-     */
-    public function produits_tag(ProduitRepository $produit_repository, TagRepository $tag_repository, $tag)
-    {
-        $label = $tag_repository->findOneBy(['nom' => $tag]);
-        $produits = $produit_repository->findBy(['tags' => $label]); // comment faire la recherche sur un array  ???
-        return $this->render('produit/produit_tag.html.twig', [ // Pas besoin, c'est déjà fait dans Tags. Cette route ne sert à rien, efface-la
-            'produits' => $produits
         ]);
     }
 
