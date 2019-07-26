@@ -15,9 +15,7 @@ class PagesController extends AbstractController
      */
     public function index()
     {
-        return $this->render('pages/home.html.twig', [
-            'controller_name' => 'PagesController',
-        ]);
+        return $this->render('pages/home.html.twig');
     }
 
     /**

@@ -9,26 +9,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/tag")
  */
 class TagController extends AbstractController
 {
-    private $repository;
-
-    public function __construct(TagRepository $repository)
-    {
-        $this->repository = $repository;        
-    }
-
+    
     /**
      * @Route("/", name="tag_index", methods={"GET"})
      */
     public function index(): Response
     {
+        $tags = $this->repository->findAll();
         return $this->render('tag/index.html.twig', [
-            'tags' => $this->repository->findAll(),
+            'tags' => $tags
         ]);
     }
 
@@ -61,7 +57,7 @@ class TagController extends AbstractController
     public function show(Tag $tag): Response
     {
         return $this->render('tag/show.html.twig', [
-            'tag' => $tag,
+            'tag' => $tag
         ]);
     }
 
@@ -97,5 +93,25 @@ class TagController extends AbstractController
         }
 
         return $this->redirectToRoute('tag_index');
+    }
+
+    /**
+     * @Route("/{nom}", name="tag_produits", methods={"GET"})
+     */
+    public function tag_produit(Tag $tag): Response
+    {
+
+        $produits = $tag->getProduits();
+
+        // foreach($produits as $p) {
+        //     dump($p);
+        // }
+
+        // die;
+
+        return $this->render('tag/produits.html.twig', [
+            'produits'  => $produits,
+            'tag'       => $tag->getNom()
+        ]);
     }
 }

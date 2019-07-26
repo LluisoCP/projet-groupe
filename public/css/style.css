@@ -28,3 +28,8 @@ body {
 #footer {
     background-color: rgba(2, 2, 245, .8)   
 }
+
+/*Page produit par tag */
+.produit-tag {
+    object-fit: contain; /*or cover*/
+}
