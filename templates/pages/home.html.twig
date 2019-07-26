@@ -3,5 +3,55 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-
+<form method="POST" action="{{url('home')}}">
+    <div class="form-group">
+        <label>Recherche</label>
+        <input type="text" class="form-control" placeholder="Entrez le nom d'un produit" name="nom">
+    </div>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-sucess">Rechercher</button>
+    </div>
+</form>
+<form method="POST" action="{{url('home')}}">
+    <div class="form-group">
+        <label>Catégorie</label>
+        <select class="form-control" placeholder="Choisissez une catégorie" name="cat">
+            {% for cat in listeCat %}
+            <option>{{cat.nom}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-sucess">Rechercher</button>
+    </div>
+</form>
+<form method="POST" action="{{url('home')}}">
+    <div class="form-group">
+        <label>Budget</label>
+        <input type="text" class="form-control" placeholder="Choisissez un budget" name="budget">
+    </div>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-sucess">Rechercher</button>
+    </div>
+</form>
+<div class='row'>
+    {% for produit in liste %}
+    <article class="col-4 card">
+        <img src="" class="card-img-top">
+        <div class="card_body">
+            <h5>{{produit.nom}}</h5>
+            <ul class="list-group-item">
+                <li>Référence: {{produit.reference}}</li>
+                <li>Description: {{produit.description}}</li>
+                <li>Stock: {{produit.stock}}</li>
+                <li>Prix: {{produit.prix}}</li>
+            </ul>
+        </div>
+    </article>
+    {% else %}
+    <p class="alert alert-info">
+        Aucun produit actuellement disponible.
+    </p>
+    {% endfor %}
+</div>
 {% endblock %}
