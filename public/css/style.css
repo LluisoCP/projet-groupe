@@ -107,13 +107,22 @@ input[type="range"] {
 }
 /* Mini panier*/
 #minipanier {
-    width: 300px;
-    position: absolute;
-    right: 50px;
+    width: 300px; /*??*/
+    position: fixed;
+    right: 30px;
     top: 50px;
     padding: 10px;
-    background-color: blueviolet;
+    background-color: rgba(138,43,226,.4);
+    border: 2px solid blueviolet;
+}
+#minipanier > h5 {
+    margin-bottom: 0;
 }
 #minipanier-content {
+    background-color: blueviolet;
     display: none;
+    margin-top: .5rem;
+}
+#minipanier #edit-mini {
+    padding: 5px 0;
 }

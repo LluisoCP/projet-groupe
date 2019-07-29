@@ -2,7 +2,7 @@ $.noConflict();
 jQuery(document).ready(function ($) {
     
     // Demarrer le slider (qui ne marche pas)
-    $('input[type="range"]').rangeslider();
+    // $('input[type="range"]').rangeslider();
 
     // A la place, j'enregistre le prix choisi
     $('#maxprice').change(function() {
@@ -51,7 +51,7 @@ jQuery(document).ready(function ($) {
 
                     results.append('<ul id="list-results" class="list-group list-group-flush">');
                     for (let product of products) {
-                        results.append('<li class="list-group-item"><a href="/produit/' + product.id + '">' + product.nom + ' (' + product.categorie.nom + ')</a></li>')
+                        results.append('<li class="list-group-item"><a href="/produit/' + product.id + '">' + product.nom + '</a> (' + product.categorie.nom + ') - '+ product.prix +'€</li>')
                     }
                     results.append('</ul">');
                 }

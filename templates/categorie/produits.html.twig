@@ -11,7 +11,7 @@
         <div class="col-12 col-md-6">
     
             <div class="card mb-3">
-                <img src="{{ produit.image ? asset('uploads/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
+                <img src="{{ produit.image ? asset('img/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
                     class="card-img-top produit-tag" alt="Image of produit {{ produit.nom }}" style="max-height:500px;">
                 <div class="card-body">
                     <h5 class="card-title">{{ produit.nom | capitalize }} -- {{produit.prix}}€</h5>
