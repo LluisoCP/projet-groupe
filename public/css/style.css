@@ -21,18 +21,19 @@ i   {
 .titre  {
         font-family: 'Share Tech Mono', monospace;
         text-align: center;
+        color:goldenrod;
         }
 
 #header {
-    background-color: rgb(140, 140, 140)
+    background-color: rgb(8, 71, 187)
 }
 
 #nav {
-    background-color: rgba(9, 175, 9, 0.8)
+    background-color: rgba(8, 83, 180, 0.8)
 }
 
 #sidebar {
-    background-color: rgba(168, 11, 11, 0.8)
+    background-color: rgba(11, 66, 168, 0.8)
 }
 
 #body {
@@ -40,7 +41,7 @@ i   {
 }
 
 #footer {
-    background-color: rgba(40, 125, 253, 0.87)   
+    background-color: rgba(4, 52, 122, 0.87)   
 }
 #footer a   {
             color: rgba(253, 249, 40, 0.87);
