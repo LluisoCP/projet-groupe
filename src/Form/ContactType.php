@@ -58,7 +58,6 @@ class ContactType extends AbstractType
                 ])
             ])
             ->add('email', EmailType::class)
-            // ->add("accepterConditions", CheckboxType::class) //ça ne marche pas
         ;
     }
 
