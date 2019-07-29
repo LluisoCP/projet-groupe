@@ -1,0 +1,18 @@
+<div id="accordion">
+    <h3 class="text-center">Catégories</h3>
+    <div>
+        <ul class="list-group list-group-flush text-center">
+            {% for category in categories %}
+            <li class="list-group-item"><a href="{{ path('cat_produits', {nom: category.nom}) }}">{{ category.nom }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <h3 class="text-center">Etiquettes</h3>
+    <div>
+        <ul class="list-group list-group-flush">
+            {% for tag in tags %}
+            <li class="list-group-item"><a href="{{ path('tag_produits', {nom: tag.nom}) }}">{{ tag.nom }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

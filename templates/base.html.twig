@@ -9,7 +9,8 @@
         <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
         {# Bootstrap #}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
+        {# jQuery UI css #}
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js">
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
@@ -71,24 +72,7 @@
                 </div>
                 <div id="sidebar" class="col-12 col-md-3 order-2 order-md-1">
                     {% block sidebar %}
-                        <div id="accordion">
-                            <h3>Catégories</h3>
-                            <div>
-                                <ul class="list-group list-group-flush">
-                                    {% for category in categories %}
-                                        <li class="list-group-item"><a href="">{{ category.nom }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <h3>Etiquettes</h3>
-                            <div>
-                                <ul class="list-group list-group-flush">
-                                    {% for tag in tags %}
-                                        <li class="list-group-item"><a href="">{{ category.nom }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
+                        {{ render(controller('App\\Controller\\SidebarController::show')) }}                        
                     {% endblock %}
                 </div>
             </div>
@@ -119,6 +103,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         {# jQuery UI #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset('js/script.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

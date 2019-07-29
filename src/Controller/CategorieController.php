@@ -105,4 +105,18 @@ class CategorieController extends AbstractController
 
         return $this->redirectToRoute('categorie_index');
     }
+
+    /**
+     * @Route("/{nom}", name="cat_produits", methods={"GET"})
+     */
+    public function cat_produit(Categorie $cat): Response
+    {
+
+        $produits = $cat->getProduits();
+
+        return $this->render('tag/produits.html.twig', [
+            'produits'  => $produits,
+            'tag'       => $cat->getNom()
+        ]);
+    }
 }
