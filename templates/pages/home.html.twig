@@ -3,15 +3,9 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<form method="POST" action="{{url('home')}}">
-    <div class="form-group">
-        <label>Recherche</label>
-        <input type="text" class="form-control" placeholder="Entrez le nom d'un produit" name="nom">
-    </div>
-    <div class="text-center">
-        <button type="submit" class="btn btn-sucess">Rechercher</button>
-    </div>
-</form>
+<h2 class="titre">
+    Liste des produits
+</h2>
 <div class='row'>
     {% for produit in liste %}
     <article class="col-4 card">
