@@ -8,6 +8,9 @@ use App\Repository\ProduitRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\TagRepository;
 use App\Entity\Produit;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProduitController extends AbstractController
 {
@@ -22,16 +25,22 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    //Essay pour tester la fonction findByPrice, elle marche. 
     /**
-     * @Route("/produit/prix/{montant}", name="p_par_prix")
+     * @Route("/results", name="results")
      */
-    public function per_prix(ProduitRepository $produit_repository , $montant)
+    public function results(Request $request, ProduitRepository $produit_repository, SerializerInterface $serializer)
     {
-        $produits = $produit_repository->findByPrice($montant, 'DESC'); //C'est 'ASC' par défaut
-        return $this->render('produit/tous.html.twig', [
-            'produits' => $produits
+        $price = $request->query->get('price');
+        $order = $request->query->get('order');
+        $produits = $produit_repository->findByPrice($price, $order);
+
+        $jsonProduits = $serializer->serialize($produits, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
         ]);
+
+        return new Response($jsonProduits, 200, ['Content-Type' => 'application/json']);
     }
 
 

@@ -9,10 +9,11 @@
         <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
         {# Bootstrap #}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        {# jQuery UI css #}
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js">
+        {# jQuery UI css ?? #}
+        
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
         <script src="https://kit.fontawesome.com/1c34d428df.js"></script>
     </head>
@@ -20,45 +21,9 @@
         <header id="header">
             
             {% block header %}
-            <div class="titre">
-                <h1>Projet.com</h1>
-            </div>
-                {# <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarToggler">
-                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ path('home') }}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('about') }}">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('categorie_index') }}">Categories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('tag_index') }}">Tags</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_register') }}">Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_login') }}">Login</a>
-                            </li>
-                        </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </div>
-                </nav> #}
+                <div class="titre">
+                    <h1>Projet.com</h1>
+                </div>
                 {{ render(controller('App\\Controller\\NavbarController::show')) }}
             {% endblock %}
 
@@ -149,7 +114,9 @@
         {# jQuery UI #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         {% block javascripts %}
-        <script src="{{ asset('js/script.js') }}"></script>
+        {# pour faire marcher le slider du prix #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.js"></script>
+        <script src="{{ asset('js/sidebar.js') }}"></script>
         {% endblock %}
     </body>
 </html>
