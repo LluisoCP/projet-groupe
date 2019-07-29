@@ -85,20 +85,60 @@
             {% endif %}
         
         {% endblock %}
+        {% block footer %}
         <div class="container">
-            <div class="row">
                 <div id="footer" class="col-12">
-                    {% block footer %}
-                        Retrouvez nous sur:<br/>
+                    <div class="col-12 row">
+                        <div class="col-3">
+                            <h5>Catégorie</h5>
+                            <ul>
+                                <li><a href="#">ordinateur</a></li>
+                                <li><a href="#">jeux vidéo</a></li>
+                                <li><a href="#">audio</a></li>
+                                <li><a href="#">vidéo</a></li>
+                                <li><a href="#">éléctroménager</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-3">
+                            <h5>Contacte</h5>
+                            <ul>
+                                <li><a href="#">Service Client</a></li>
+                                <li><a href="#">Service Après-vente</a></li>
+                                <li><a href="#">Service Technique</a></li>
+                                <li><a href="#">Espace Presse</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-3">
+                            <h5>A propos</h5>
+                            <ul>
+                                <li><a href="#">Qui sommes nous?</a></li>
+                                <li><a href="#">Nos services</a></li>
+                                <li><a href="#">CGV</a></li>
+                                <li><a href="#">Information légales</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-3">
+                            <h5>Projet.com et vous</h5>
+                            <ul>
+                                <li><a href="#">Nos valeurs</a></li>
+                                <li><a href="#">Projet.com</a></li>
+                                <li><a href="#">Notre programme fidélité</a></li>
+                                <li><a href="#">Politique des cookies</a></li>
+                                <li><a href="#">Gérer vos cookies</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 row">
+                        Retrouvez nous sur:<br />
                         <a href="#" class="icon"><i class="fab fa-facebook-square"></i></a>
                         <a href="#" class="icon"><i class="fab fa-twitter-square"></i></a>
                         <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
                         <a href="#" class="icon"><i class="fab fa-twitch"></i></a>
                         <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
-                    {% endblock %}
+                    </div>
                 </div>
-            </div>
         <div/>
+        {% endblock %}
         
         {# BootstrapJS #}
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
