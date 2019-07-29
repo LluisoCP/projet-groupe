@@ -32,13 +32,13 @@
         <div class="container-fluid">
             
             <div class="row">
-                <div id="body" class="col-12 col-md-8 order-1 order-md-2 py-3">
-                    {% block body %}{% endblock %}
-                </div>
                 <div id="sidebar" class="col-8 col-md-2 order-2 order-md-1">
                     {% block sidebar %}
-                        {{ render(controller('App\\Controller\\SidebarController::show')) }}                        
+                    {{ render(controller('App\\Controller\\SidebarController::show')) }}
                     {% endblock %}
+                </div>
+                <div id="body" class="col-12 col-md-8 order-1 order-md-2 py-3">
+                    {% block body %}{% endblock %}
                 </div>
             </div>
         </div>
@@ -102,7 +102,8 @@
                         <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-        <div/>
+        </div>
+
         {% endblock %}
         
         {# BootstrapJS #}

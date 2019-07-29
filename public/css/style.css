@@ -33,12 +33,14 @@ i   {
 }
 
 #sidebar {
-    background-color: rgba(11, 66, 168, 0.8)
+    background-color: rgba(11, 66, 168, 0.8);
 }
 
-#body {
-    background-color: rgba(230, 230, 230, 1)
-}
+#body   {
+        background-color: rgba(230, 230, 230, 1);
+        /*margin-left: 20px;
+        margin-right: 20px;*/
+        }
 
 #footer {
     background-color: rgba(4, 52, 122, 0.87)   
