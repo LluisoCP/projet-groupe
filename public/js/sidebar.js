@@ -6,7 +6,7 @@ jQuery(document).ready(function ($) {
 
     // A la place, j'enregistre le prix choisi
     $('#maxprice').change(function() {
-        $('#price-selected').text($(this).val())
+        $('#price-selected').text($(this).val() + '€')
     });
     // jQuery Accordion
     $(function () {
@@ -18,6 +18,10 @@ jQuery(document).ready(function ($) {
             icons: { "header": "ui-icon-triangle-1-s", "activeHeader": "ui-icon-triangle-1-n" }
         });
     });
+
+    // $('#accordion').click(function() {
+    //     $('#results').html('');
+    // })
 
     const   trigger = $('#lance-recherche'),
             results = $('#results');
@@ -45,7 +49,7 @@ jQuery(document).ready(function ($) {
                     results.append('<p class="text-center mt-3" style="color:red;">Pas de produits</p>');
                 } else {
 
-                    results.append('<ul class="list-group list-group-flush">');
+                    results.append('<ul id="list-results" class="list-group list-group-flush">');
                     for (let product of products) {
                         results.append('<li class="list-group-item"><a href="/produit/' + product.id + '">' + product.nom + ' (' + product.categorie.nom + ')</a></li>')
                     }

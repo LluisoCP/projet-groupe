@@ -1,35 +1,35 @@
-{% extends "base.html.twig" %}
-
 {% block panier %}
     <div id="minipanier">
-        <h5>Mon Panier <i class="fas fa-sort-down"></i></h5>
-        table.<table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Produit</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col">Unités</th>
-                    <th scope="col">Montant</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{  }}</td>
-                    <td>{{  }}</td>
-                    <td>{{  }}</td>
-                </tr>
-                <tr>
-                    <td colspan="">Total</td>
-                    <td>{{  }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <ul class="list-group list-group-flush">
-            <li class="list-item-flush"></li>
-        </ul>
-        <div id="edit-mini">
-            <button type="button" class="btn btn-primary">Vider</button>
-            <button type="button" class="btn btn-primary">Editer</button>
+        <h5 id="toggle-panier" class="text-center">Mon Panier <i class="fas fa-sort-down"></i></h5>
+        <div id="minipanier-content">
+
+            <table id="table-panier" class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Produit</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Unités</th>
+                        <th scope="col">Montant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center">
+                        <td>Test</td>
+                        <td>Test</td>
+                        <td>Test</td>
+                        <td>Test</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="text-right" colspan="3">Total</td>
+                        <td>25€</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="edit-mini">
+                <button type="button" class="btn btn-primary">Vider</button>
+                <button type="button" class="btn btn-primary">Editer</button>
+            </div>
+
         </div>
     </div>
 {% endblock %}

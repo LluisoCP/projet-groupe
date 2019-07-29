@@ -19,7 +19,7 @@ class PanierController extends AbstractController
      */
     public function index()
     {
-        $paniers = $this->getUser()->getPaniers;
+        $paniers = $this->getUser()->getPaniers();
         return $this->render('panier/panier.html.twig', [
             'paniers' => $paniers,
         ]);
@@ -27,7 +27,7 @@ class PanierController extends AbstractController
 
     public function mini()
     {
-        $paniers = $this->getUser()->getPaniers;
+        $paniers = $this->getUser()->getPaniers();
         return $this->render('panier/mini_panier.html.twig', [
             'paniers' => $paniers,
         ]);
