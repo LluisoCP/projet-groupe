@@ -42,3 +42,35 @@ a.icon, i   {
 .produit-tag {
     object-fit: contain; /*or cover*/
 }
+
+/*Accordion et formulaire*/
+#search {
+    font-size: 1.2em;
+    color: white;
+}
+#price-selected {
+    color: black;
+    font-size: 1.5em;
+    float: right;
+}
+input[type="range"] {
+    width: 100%;
+}
+#accordion h2 {
+    cursor: pointer;
+}
+#accordion a {
+    color: black;
+}
+@keyframes spinner {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+#spinning {
+    animation: 1s linear infinite spinner;
+}

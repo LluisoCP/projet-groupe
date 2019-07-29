@@ -1,5 +1,5 @@
 <div id="accordion">
-    <h3 class="text-center">Catégories</h3>
+    <h2 class="text-center">Catégories</h2>
     <div>
         <ul class="list-group list-group-flush text-center">
             {% for category in categories %}
@@ -7,12 +7,45 @@
             {% endfor %}
         </ul>
     </div>
-    <h3 class="text-center">Etiquettes</h3>
+    <h2 class="text-center">Etiquettes</h2>
     <div>
-        <ul class="list-group list-group-flush">
+        <div id="menu-etiquettes" class="d-flex flex-wrap justify-content-around">
             {% for tag in tags %}
-            <li class="list-group-item"><a href="{{ path('tag_produits', {nom: tag.nom}) }}">{{ tag.nom }}</a></li>
+                <h3 class="my-1">
+                    <span class="badge badge-primary">
+                        <a href="{{ path('tag_produits', {nom:tag.nom}) }}">{{ tag.nom }}</a>
+                    </span>
+                </h3>
             {% endfor %}
-        </ul>
+        </div>
     </div>
+    <h2 class="text-center">Recherche</h2>
+    <div id="search">
+        <div class="form-group">
+            <label>Nom/mot cle</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label class="d-block" for="maxprice">Prix maximal: <span id="price-selected">20</span></label>
+            <input id="maxprice" name="maxprice" type="range" min="5" max="500" value="20">
+            
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="order" id="ascendant" value="ASC" checked>
+                <label class="form-check-label" for="ascendant">
+                    Par prix descendant
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="order" id="descendant" value="DESC">
+                <label class="form-check-label" for="descendant">
+                    Par prix ascendant
+                </label>
+            </div>
+        </div>
+        <button id="lance-recherche" class="btn btn-success">Rechercher</button>
+    </div>
+</div>
+<div id="results">
 </div>
