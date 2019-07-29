@@ -8,18 +8,23 @@ fonts
 */
 body {
     margin: 0;
+    font-family: 'Ropa Sans', sans-serif;
 }
 * {
     box-sizing: border-box;
 }
+.titre  {
+        font-family: 'Share Tech Mono', monospace;
+        text-align: center;
+        }
 #header {
-    background-color: rgba(100, 100, 100, 1)
+    background-color: rgb(140, 140, 140)
 }
 #nav {
-    background-color: rgba(2, 245, 2, .8)
+    background-color: rgba(9, 175, 9, 0.8)
 }
 #sidebar {
-    background-color: rgba(245, 2, 2, .8)
+    background-color: rgba(168, 11, 11, 0.8)
 }
 #body {
     background-color: rgba(230, 230, 230, 1)
