@@ -13,6 +13,10 @@ body {
 * {
     box-sizing: border-box;
 }
+a.icon, i   {
+            min-width: 15px;
+            min-height: 15px;
+            }
 .titre  {
         font-family: 'Share Tech Mono', monospace;
         text-align: center;
@@ -31,7 +35,7 @@ body {
 }
 
 #footer {
-    background-color: rgba(2, 2, 245, .8)   
+    background-color: rgba(40, 125, 253, 0.87)   
 }
 
 /*Page produit par tag */
