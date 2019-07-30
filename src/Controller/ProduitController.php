@@ -47,19 +47,6 @@ class ProduitController extends AbstractController
         return new Response($jsonProduits, 200, ['Content-Type' => 'application/json']);
     }
 
-
-    /**
-     * @Route("/{id}", name="produit", methods={"GET", "POST"})
-     */
-    public function show($id, ProduitRepository $produit)
-    {
-        $liste = $produit->findBy(['id' => $id]);
-        return $this->render('produit/show.html.twig', [
-            'title' => "Nos produits",
-            'liste' => $liste
-        ]);
-    }
-
     /**
      * @Route("/create", name="createProduit", methods={"GET", "POST"})
      */
@@ -88,6 +75,18 @@ class ProduitController extends AbstractController
 
         return $this->render('produit/create.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="produit", methods={"GET", "POST"})
+     */
+    public function show($id, ProduitRepository $produit)
+    {
+        $liste = $produit->findBy(['id' => $id]);
+        return $this->render('produit/show.html.twig', [
+            'title' => "Nos produits",
+            'liste' => $liste
         ]);
     }
 
