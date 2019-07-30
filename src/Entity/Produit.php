@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Produit
 {
@@ -89,6 +90,16 @@ class Produit
         $this->tags = new ArrayCollection();
         $this->paniers = new ArrayCollection();
         $this->setCreatedAt(new \DateTime());
+    }
+
+    
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updatedTimestamps(): void
+    {
+        $this->setUpdatedAt(new \DateTime());
     }
 
     public function getId(): ?int

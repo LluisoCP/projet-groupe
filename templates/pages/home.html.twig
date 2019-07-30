@@ -19,6 +19,7 @@
                 <li>Stock: {{produit.stock}}</li>
                 <li>Prix: {{produit.prix}}€</li>
             </ul>
+            <a href="{{ path('produit', {'id': produit.id}) }}" class="btn btn-success">Voir Produit</a>
         </div>
     </article>
     {% else %}

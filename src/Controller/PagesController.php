@@ -7,6 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProduitRepository;
 use App\Entity\Produit;
 use App\Repository\CategorieRepository;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Message;
 
 class PagesController extends AbstractController
 {
@@ -133,7 +135,7 @@ class PagesController extends AbstractController
     public function nos_valeurs()
     {
         return $this->render('pages/mentions.html.twig', [
-            'titre' => 'Nos Valuers'
+            'titre' => 'Nos Valeurs'
         ]);
     }
 
@@ -223,18 +225,6 @@ class PagesController extends AbstractController
                 'liste' => $liste
             ]
         );
-    }
-
-    /**
-     * @Route("/produit/{id}", name="produit", methods={"GET", "POST"})
-     */
-    public function show($id, ProduitRepository $produit)
-    {
-        $liste = $produit->findBy(['id' => $id]);
-        return $this->render('produit/show.html.twig', [
-            'title' => "Nos produits",
-            'liste' => $liste
-        ]);
     }
 
 

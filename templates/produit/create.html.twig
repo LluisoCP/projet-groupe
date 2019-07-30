@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        <h3 class="tex-center">Ajouter un produit</h3>
+        {{ form_start(form) }}
+
+        {{ form_row(form.categorie) }}
+        {{ form_row(form.reference) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.modele) }}
+        {{ form_row(form.marque) }}
+        {{ form_row(form.prix) }}
+        <small class="d-block">Nous respectons la loi de protection de donées.</small>
+        <small class="d-block">En envoyant ce formulaire vous acceptez les <a
+                href="{{ path('conditions_utilisation') }}">conditions générales d'utilisation</a></small>
+        <button type="submit" class="btn btn-success">Créer un produit</button>
+
+        {{ form_end(form) }}
+
+    </div>
+</div>
+{% endblock %}

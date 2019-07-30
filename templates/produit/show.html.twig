@@ -13,10 +13,13 @@
             <h1 class="text-center">{{produit.nom}}</h1>
                 <ul class="list-group-item">
                     <li>Référence: {{produit.reference}}</li>
+                    <li>marque: {{produit.marque}}</li>
+                    <li>modèle: {{produit.modele}}</li>
                     <li>Description: {{produit.description}}</li>
                     <li>Stock: {{produit.stock}}</li>
                     <li>Prix: {{produit.prix}}€</li>
                 </ul>
+                <a href="{{ path('produit', {'id': produit.id}) }}" class="btn btn-success">Voir Produit</a>
             </div>
             {% else %}
     <p class="alert alert-info">

@@ -15,7 +15,7 @@ class NavbarController extends AbstractController
             $liens = [
                 // ['href' => 'clients',       'lib' => 'Clients',         'icon' => 'fas fa-user'],
                 // ['href' => 'paniers',    'lib' => 'Paniers',      'icon' => 'fas fa-shopping-basquet'],
-                // ['href' => 'ajout_produit', 'lib' => 'Ajout Produit',   'icon' => 'fas fa-plus-circle'],
+                ['href' => 'createProduit', 'lib' => 'Ajout Produit',   'icon' => 'fas fa-plus-circle'],
                 // ['href' => 'ajout_tag', 'lib' => 'Ajout Etiquette',   'icon' => 'fas fa-plus-circle'],
                 // ['href' => 'ajout_categorie', 'lib' => 'Ajout Categorie',   'icon' => 'fas fa-plus-circle'],
                 ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
