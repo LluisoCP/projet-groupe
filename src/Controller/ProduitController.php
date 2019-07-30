@@ -62,13 +62,13 @@ class ProduitController extends AbstractController
      */
     public function createProduit(Request $request)
     {
-        $message = new Produit();
-        $form = $this->createForm(ProduitType::class, $message);
+        $produit = new Produit();
+        $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($message);
+            $em->persist($produit);
             $em->flush();
 
             // 1. Rediect:
