@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}Projet.com{% endblock %}</title>
         {# FontAwesome #}
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css?family=Ropa+Sans&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
             
             {% block header %}
                 <div class="titre">
-                    <h1>Projet.com</h1>
+                    <h1><a href="{{ path('home') }}">Projet.com</a></h1>
                 </div>
                 {{ render(controller('App\\Controller\\NavbarController::show')) }}
             {% endblock %}
@@ -50,60 +50,9 @@
             {% endif %}
         
         {% endblock %}
+        
         {% block footer %}
-        <div id="footer" class="container">
-                <div class="col-12">
-                    <div class="col-12 row">
-                        <div class="col-3">
-                            <h5>Catégorie</h5>
-                            <ul>
-                                <li><a href="{#{{ path('') }}#}">ordinateur</a></li>
-                                <li><a href="{#{{ path('') }}#}">jeux vidéo</a></li>
-                                <li><a href="{#{{ path('') }}#}">audio</a></li>
-                                <li><a href="{#{{ path('') }}#}">vidéo</a></li>
-                                <li><a href="{#{{ path('') }}#}">éléctroménager</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-3">
-                            <h5>Contacte</h5>
-                            <ul>
-                                <li><a href="#">Service Client</a></li>
-                                <li><a href="#">Service Après-vente</a></li>
-                                <li><a href="#">Service Technique</a></li>
-                                <li><a href="#">Espace Presse</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-3">
-                            <h5>A propos</h5>
-                            <ul>
-                                <li><a href="#">Qui sommes nous?</a></li>
-                                <li><a href="#">Nos services</a></li>
-                                <li><a href="#">CGV</a></li>
-                                <li><a href="#">Information légales</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-3">
-                            <h5>Projet.com et vous</h5>
-                            <ul>
-                                <li><a href="#">Nos valeurs</a></li>
-                                <li><a href="#">Projet.com recrute</a></li>
-                                <li><a href="#">Notre programme fidélité</a></li>
-                                <li><a href="#">Politique des cookies</a></li>
-                                <li><a href="#">Gérer vos cookies</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-12 row">
-                        Retrouvez nous sur:<br />
-                        <a href="#" class="icon"><i class="fab fa-facebook-square"></i></a>
-                        <a href="#" class="icon"><i class="fab fa-twitter-square"></i></a>
-                        <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="icon"><i class="fab fa-twitch"></i></a>
-                        <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-        </div>
-
+            {{ render(controller('App\\Controller\\FooterController::index')) }}
         {% endblock %}
         
         {# BootstrapJS #}
@@ -116,11 +65,11 @@
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         {# jQuery UI #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        {% block javascripts %}
         {# pour faire marcher le slider du prix #}
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.js"></script> -->
         <script src="{{ asset('js/sidebar.js') }}"></script>
         <script src="{{ asset('js/minipanier.js') }}"></script>
+        {% block javascripts %}
         {% endblock %}
     </body>
 </html>
