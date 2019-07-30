@@ -61,7 +61,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/createProduit", name="createProduit", methods={"GET", "POST"})
+     * @Route("/create", name="createProduit", methods={"GET", "POST"})
      */
     public function createProduit(Request $request)
     {
