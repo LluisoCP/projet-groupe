@@ -22,7 +22,7 @@
             
             {% block header %}
                 <div class="titre">
-                    <h1><a href="{{ path('home') }}">Projet.com</a></h1>
+                    <h1><a href="{{ path('home') }}" class="titre">Projet.com</a></h1>
                 </div>
                 {{ render(controller('App\\Controller\\NavbarController::show')) }}
             {% endblock %}
