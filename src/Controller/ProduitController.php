@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\ProduitType;
+use App\Service\FileUploader;
 
 /**
  * @Route("/produits")
@@ -50,13 +51,18 @@ class ProduitController extends AbstractController
     /**
      * @Route("/create", name="createProduit", methods={"GET", "POST"})
      */
-    public function createProduit(Request $request)
+    public function createProduit(Request $request, FileUploader $uploader)
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form['image']->getData();
+            // $image = $produit->getImage();
+            $filename = $uploader->upload($image);
+            $produit->setImage($filename);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
