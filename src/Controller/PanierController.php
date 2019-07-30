@@ -35,7 +35,7 @@ class PanierController extends AbstractController
     }
 
     /**
-     * @Route("/vider_panier", name="vider_panier)
+     * @Route("/vider_panier", name="vider_panier")
      */
     public function vider(Request $request)
     {
