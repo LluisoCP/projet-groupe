@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Projet.com{% endblock %}
 
 {% block body %}
 <h2 class="titre">
@@ -9,7 +9,8 @@
 <div class='row'>
     {% for produit in liste %}
     <article class="col-4 card">
-        <img src="" class="card-img-top">
+        <img    src="{{ produit.image ? asset('img/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
+                class="card-img-top">
         <div class="card_body">
             <h5>{{produit.nom}}</h5>
             <ul class="list-group-item">

@@ -1,14 +1,15 @@
 <div id="accordion">
     <h2 class="text-center">Catégories</h2>
-    <div>
+    <div class="accordion-item">
         <ul class="list-group list-group-flush text-center">
             {% for category in categories %}
             <li class="list-group-item"><a href="{{ path('cat_produits', {nom: category.nom}) }}">{{ category.nom }}</a></li>
             {% endfor %}
         </ul>
     </div>
+    <hr>
     <h2 class="text-center">Etiquettes</h2>
-    <div>
+    <div class="accordion-item">
         <div id="menu-etiquettes" class="d-flex flex-wrap justify-content-around">
             {% for tag in tags %}
                 <h3 class="my-1">
@@ -19,14 +20,15 @@
             {% endfor %}
         </div>
     </div>
+    <hr>
     <h2 class="text-center">Recherche</h2>
-    <div id="search">
+    <div class="accordion-item" id="search">
         <div class="form-group">
             <label>Nom/mot cle</label>
             <input type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label class="d-block" for="maxprice">Prix maximal: <span id="price-selected">20</span></label>
+            <label class="d-block" for="maxprice">Prix maximal: <span id="price-selected">20&euro;</span></label>
             <input id="maxprice" name="maxprice" type="range" min="5" max="500" value="20">
             
         </div>
@@ -34,13 +36,13 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="order" id="ascendant" value="ASC" checked>
                 <label class="form-check-label" for="ascendant">
-                    Par prix descendant
+                    Par prix ascendant
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="order" id="descendant" value="DESC">
                 <label class="form-check-label" for="descendant">
-                    Par prix ascendant
+                    Par prix descendant
                 </label>
             </div>
         </div>

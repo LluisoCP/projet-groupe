@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PanierRepository;
+use Symfony\Component\HttpFoundation\Request;
 
 class PanierController extends AbstractController
 {
@@ -19,7 +20,7 @@ class PanierController extends AbstractController
      */
     public function index()
     {
-        $paniers = $this->getUser()->getPaniers;
+        $paniers = $this->getUser()->getPaniers();
         return $this->render('panier/panier.html.twig', [
             'paniers' => $paniers,
         ]);
@@ -27,10 +28,18 @@ class PanierController extends AbstractController
 
     public function mini()
     {
-        $paniers = $this->getUser()->getPaniers;
+        $paniers = $this->getUser()->getPaniers();
         return $this->render('panier/mini_panier.html.twig', [
             'paniers' => $paniers,
         ]);
+    }
+
+    /**
+     * @Route("/vider_panier", name="vider_panier")
+     */
+    public function vider(Request $request)
+    {
+        $user = $request->getUser();        //  ??
     }
 
     

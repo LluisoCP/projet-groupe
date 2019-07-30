@@ -56,6 +56,21 @@ i   {
 }
 
 /*Accordion et formulaire*/
+#accordion {
+    padding-top: 30px;
+}
+.ui-accordion-header {
+    transition: color .3s linear;
+    padding: 10px 0;
+    font-size: 2em;
+}
+
+.accordion-item {
+    display: none;
+}
+.ui-state-hover {
+    color: white;
+}
 #search {
     font-size: 1.2em;
     color: white;
@@ -63,7 +78,7 @@ i   {
 #price-selected {
     color: black;
     font-size: 1.5em;
-    float: right;
+    /* float: right; */
 }
 input[type="range"] {
     width: 100%;
@@ -82,7 +97,32 @@ input[type="range"] {
         transform: rotateZ(360deg);
     }
 }
-
 #spinning {
     animation: 1s linear infinite spinner;
+    color: white;
+    font-size: 2em;
+}
+#results {
+    padding: 15px 5px;
+}
+/* Mini panier*/
+#minipanier {
+    width: 300px; /*??*/
+    position: fixed;
+    right: 30px;
+    top: 50px;
+    padding: 10px;
+    background-color: rgba(138,43,226,.4);
+    border: 2px solid blueviolet;
+}
+#minipanier > h5 {
+    margin-bottom: 0;
+}
+#minipanier-content {
+    background-color: blueviolet;
+    display: none;
+    margin-top: .5rem;
+}
+#minipanier #edit-mini {
+    padding: 5px 0;
 }
