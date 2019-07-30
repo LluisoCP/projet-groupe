@@ -44,15 +44,6 @@ class ProduitController extends AbstractController
     }
 
 
-    /**
-     * @Route("/produit/{id}", name="produit", methods={"GET", "POST"})
-     */
-    public function show(Produit $produit)
-    {
-        return $this->render('produit/show.html.twig', [
-            'produit' => $produit
-        ]);
-    }
 
 
 }

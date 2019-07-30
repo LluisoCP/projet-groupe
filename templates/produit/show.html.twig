@@ -3,5 +3,25 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Ici on montrera tous les détails d'un produit.</h1>
+{% for produit in liste %}  
+    <div class='row'>
+        <article class="col-6 card">
+            <img src="{{ produit.image ? asset('img/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
+            class="card-img-top">
+        </article>
+        <div class="card_body col-6">
+            <h1 class="text-center">{{produit.nom}}</h1>
+                <ul class="list-group-item">
+                    <li>Référence: {{produit.reference}}</li>
+                    <li>Description: {{produit.description}}</li>
+                    <li>Stock: {{produit.stock}}</li>
+                    <li>Prix: {{produit.prix}}€</li>
+                </ul>
+            </div>
+            {% else %}
+    <p class="alert alert-info">
+        Aucun produit actuellement disponible.
+    </p>
+        {% endfor %}
+    </div>
 {% endblock %}

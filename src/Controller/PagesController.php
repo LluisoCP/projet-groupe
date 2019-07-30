@@ -92,4 +92,17 @@ class PagesController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/produit/{id}", name="produit", methods={"GET", "POST"})
+     */
+    public function show($id, ProduitRepository $produit)
+    {
+        $liste = $produit->findBy(['id' => $id]);
+        return $this->render('produit/show.html.twig', [
+            'title' => "Nos produits",
+            'liste' => $liste
+        ]);
+    }
+
+
 }
