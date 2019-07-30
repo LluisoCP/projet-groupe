@@ -23,7 +23,9 @@ class PagesController extends AbstractController
      */
     public function about()
     {
-        return $this->render('pages/about.html.twig');
+        return $this->render('pages/about.html.twig', [
+            'titre' => 'Qui sommes nous'
+        ]);
     }
 
     /**
@@ -42,6 +44,137 @@ class PagesController extends AbstractController
                 'listeCat' => $listeCat
             ]
         );
+    }
+
+    /**
+     * @Route("/mentions_legales", name="mentions_legales", methods={"GET"})
+     */
+    public function mentions()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Mentions Légales'
+        ]);
+    }
+
+    /**
+     * @Route("/conditions_vente", name="conditions_vente", methods={"GET"})
+     */
+    public function conditions_vente()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Conditions Générales de Vente'
+        ]);
+    }
+
+
+    /**
+     * @Route("/conditions_utilisation", name="conditions_utilisation", methods={"GET"})
+     */
+    public function conditions_uitlisation()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Conditions Générales d\'Utilisation'
+        ]);
+    }
+
+    /**
+     * @Route("/service_client", name="service_client", methods={"GET"})
+     */
+    public function service_client()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Sevices Client'
+        ]);
+    }
+
+    /**
+     * @Route("/service_apres_vente", name="service_apres_vente", methods={"GET"})
+     */
+    public function service_apres_vente()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Services Après Vente'
+        ]);
+    }
+
+    /**
+     * @Route("/services", name="services", methods={"GET"})
+     */
+    public function services()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Nos Services'
+        ]);
+    }
+
+    /**
+     * @Route("/service_technique", name="service_technique", methods={"GET"})
+     */
+    public function service_technique()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Services Techniques'
+        ]);
+    }
+
+    /**
+     * @Route("/service_presse", name="service_presse", methods={"GET"})
+     */
+    public function service_presse()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Services Presse'
+        ]);
+    }
+
+    /**
+     * @Route("/nos_valeurs", name="nos_valeurs", methods={"GET"})
+     */
+    public function nos_valeurs()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Nos Valuers'
+        ]);
+    }
+
+    /**
+     * @Route("/recrutement", name="recrutement", methods={"GET"})
+     */
+    public function recrutement()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Processus de Recrutement'
+        ]);
+    }
+
+    /**
+     * @Route("/fidelite", name="fidelite", methods={"GET"})
+     */
+    public function fidelite()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Notre Programme de Fidelité'
+        ]);
+    }
+
+    /**
+     * @Route("/cookies", name="cookies", methods={"GET"})
+     */
+    public function cookies()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Notre Politique de Cookies'
+        ]);
+    }
+
+    /**
+     * @Route("/gerer_cookies", name="gerer_cookies", methods={"GET"})
+     */
+    public function gerer_cookies()
+    {
+        return $this->render('pages/mentions.html.twig', [
+            'titre' => 'Gérer vos Cookies'
+        ]);
     }
 
     /**

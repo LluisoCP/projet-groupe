@@ -8,7 +8,7 @@
 </h2>
 <div class='row'>
     {% for produit in liste %}
-    <article class="col-4 card">
+    <article class="col-4 card py-2">
         <img    src="{{ produit.image ? asset('img/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
                 class="card-img-top">
         <div class="card_body">

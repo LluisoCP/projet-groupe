@@ -1,8 +1,8 @@
 {% block panier %}
-    <div id="minipanier">
+    <div class="d-none d-sm-block" id="minipanier">
         <h5 id="toggle-panier" class="text-center">Mon Panier <i class="fas fa-sort-down"></i></h5>
         <div id="minipanier-content">
-
+            {% if paniers %}
             <table id="table-panier" class="table">
                 <thead>
                     <tr class="text-center">
@@ -13,15 +13,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="text-center">
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                    </tr>
+                    {% set total = 0 %}
+                    {% for panier in paniers %}
+                        {% set total = total + panier.montant %}
+                        <tr class="text-center">
+                            <td><a href="{{ path('produit', {id:panier.produit.id}) }}">{{ panier.produit.getNom() }}</a></td>
+                            <td>{{ panier.getPrixUnite() }}</td>
+                            <td>{{ panier.quantite }}</td>
+                            <td>{{ panier.montant }}</td>
+                        </tr>
+
+                    {% endfor %}
+
                     <tr class="text-center">
                         <td class="text-right" colspan="3">Total</td>
-                        <td>25€</td>
+                        <td>{{ total }}€</td>
                     </tr>
                 </tbody>
             </table>
@@ -29,7 +35,12 @@
                 <a href="{#{{ path() }}#}" type="button" class="btn btn-warning">Editer</a>
                 <a href="{#{{ path() }}#}" type="button" class="btn btn-danger">Vider</a>
             </div>
-
+            {% else %}
+                Vous n'avez pas de produits dans votre panier.
+            {% endif %}
         </div>
+    </div>
+    <div class="d-block d-sm-none">
+        <a href="{{ path('panier') }}" class="btn btn-sm btn-info">Mon Panier</a>
     </div>
 {% endblock %}
