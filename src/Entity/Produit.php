@@ -74,6 +74,16 @@ class Produit
      */
     private $paniers;
 
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    private $modele;
+
+    /**
+     * @ORM\Column(type="string", length=150)
+     */
+    private $marque;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -247,6 +257,30 @@ class Produit
                 $panier->setProduit(null);
             }
         }
+        return $this;
+    }
+
+    public function getModele(): ?string
+    {
+        return $this->modele;
+    }
+
+    public function setModele(string $modele): self
+    {
+        $this->modele = $modele;
+
+        return $this;
+    }
+
+    public function getMarque(): ?string
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(string $marque): self
+    {
+        $this->marque = $marque;
+
         return $this;
     }
 }

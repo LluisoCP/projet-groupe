@@ -1,49 +1,54 @@
-<div id="footer" class="container">
-    <div class="col-12">
-        <div class="col-12 row">
-            <div class="col-3">
-                <h5>Catégorie</h5>
-                <ul>
-                    {% for categorie in categories %}
+<div id="footer" class="container-fluid">
+    <div class="col-12 row">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    <h5>Catégorie</h5>
+                    <ul>
+                        {% for categorie in categories %}
                         <li><a href="{{ path('categorie_produits', {nom:categorie.nom}) }}">{{ categorie.nom }}</a></li>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-3">
+                        <h5>Contacte</h5>
+                    <ul>
+                        <li><a href="{{ path('service_client') }}">Service Client</a></li>
+                        <li><a href="{{ path('service_apres_vente') }}">Service Après-vente</a></li>
+                        <li><a href="{{ path('service_technique') }}">Service Technique</a></li>
+                        <li><a href="{{ path('service_presse') }}">Espace Presse</a></li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <h5>A propos</h5>
+                    <ul>
+                        <li><a href="{{ path('about') }}">Qui sommes nous?</a></li>
+                        <li><a href="{{ path('services') }}">Nos services</a></li>
+                        <li><a href="{{ path('conditions_vente') }}">CGV</a></li>
+                        <li><a href="{{ path('mentions_legales') }}">Information légales</a></li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <h5>Projet.com et vous</h5>
+                    <ul>
+                        <li><a href="{{ path('nos_valeurs') }}">Nos valeurs</a></li>
+                        <li><a href="{{ path('recrutement') }}">Projet.com recrute</a></li>
+                        <li><a href="{{ path('fidelite') }}">Notre programme fidélité</a></li>
+                        <li><a href="{{ path('cookies') }}">Politique des cookies</a></li>
+                        <li><a href="{{ path('gerer_cookies') }}">Gérer vos cookies</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-3">
-                <h5>Contacte</h5>
-                <ul>
-                    <li><a href="{{ path('service_client') }}">Service Client</a></li>
-                    <li><a href="{{ path('service_apres_vente') }}">Service Après-vente</a></li>
-                    <li><a href="{{ path('service_technique') }}">Service Technique</a></li>
-                    <li><a href="{{ path('service_presse') }}">Espace Presse</a></li>
-                </ul>
-            </div>
-            <div class="col-3">
-                <h5>A propos</h5>
-                <ul>
-                    <li><a href="{{ path('about') }}">Qui sommes nous?</a></li>
-                    <li><a href="{{ path('services') }}">Nos services</a></li>
-                    <li><a href="{{ path('conditions_vente') }}">CGV</a></li>
-                    <li><a href="{{ path('mentions_legales') }}">Information légales</a></li>
-                </ul>
-            </div>
-            <div class="col-3">
-                <h5>Projet.com et vous</h5>
-                <ul>
-                    <li><a href="{{ path('nos_valeurs') }}">Nos valeurs</a></li>
-                    <li><a href="{{ path('recrutement') }}">Projet.com recrute</a></li>
-                    <li><a href="{{ path('fidelite') }}">Notre programme fidélité</a></li>
-                    <li><a href="{{ path('cookies') }}">Politique des cookies</a></li>
-                    <li><a href="{{ path('gerer_cookies') }}">Gérer vos cookies</a></li>
-                </ul>
+            
+            <div class="col-12 row">
+                Retrouvez nous sur:<br />
+                <a href="#" class="icon"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" class="icon"><i class="fab fa-twitter-square"></i></a>
+                <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="icon"><i class="fab fa-twitch"></i></a>
+                <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-        <div class="col-12 row">
-            Retrouvez nous sur:<br />
-            <a href="#" class="icon"><i class="fab fa-facebook-square"></i></a>
-            <a href="#" class="icon"><i class="fab fa-twitter-square"></i></a>
-            <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="icon"><i class="fab fa-twitch"></i></a>
-            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
-        </div>
+
     </div>
 </div>
