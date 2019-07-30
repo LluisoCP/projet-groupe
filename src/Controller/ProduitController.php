@@ -13,10 +13,13 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\ProduitType;
 
+/**
+ * @Route("/produits")
+ */
 class ProduitController extends AbstractController
 {
     /**
-     * @Route("/produits", name="produits", methods={"GET", "POST"})
+     * @Route("/", name="produits", methods={"GET", "POST"})
      */
     public function index(ProduitRepository $produit_repository)
     {
@@ -46,7 +49,7 @@ class ProduitController extends AbstractController
 
 
     /**
-     * @Route("/produit/{id}", name="produit", methods={"GET", "POST"})
+     * @Route("/{id}", name="produit", methods={"GET", "POST"})
      */
     public function show($id, ProduitRepository $produit)
     {
@@ -58,7 +61,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/createProduit", name="createProduit", methods={"GET", "POST"})
+     * @Route("/create", name="createProduit", methods={"GET", "POST"})
      */
     public function createProduit(Request $request)
     {
@@ -89,5 +92,37 @@ class ProduitController extends AbstractController
     }
 
 
+    /**
+     * @Route("/categorie/{nom}", name="cat_produits", methods={"GET"})
+     */
+    public function cat_produit(CategorieRepository $categorie_repository, $nom): Response
+    {
+        $categorie = $categorie_repository->findOneBy(['nom' => $nom]);
+        $produits = $categorie->getProduits();
 
+        return $this->render('categorie/produits.html.twig', [
+            'produits'   => $produits,
+            'categorie'  => $categorie->getNom()
+        ]);
+    }
+
+    /**
+     * @Route("/tag/{nom}", name="tag_produits", methods={"GET"})
+     */
+    public function tag_produit(TagRepository $tag_repository, $nom): Response
+    {
+        $tag = $tag_repository->findOneBy(['nom' => $nom]);
+        $produits = $tag->getProduits();
+
+        // foreach($produits as $p) {
+        //     dump($p);
+        // }
+
+        // die;
+
+        return $this->render('tag/produits.html.twig', [
+            'produits'  => $produits,
+            'tag'       => $tag->getNom()
+        ]);
+    }
 }

@@ -94,23 +94,4 @@ class TagController extends AbstractController
         return $this->redirectToRoute('tag_index');
     }
 
-    /**
-     * @Route("/{nom}", name="tag_produits", methods={"GET"})
-     */
-    public function tag_produit(Tag $tag): Response
-    {
-
-        $produits = $tag->getProduits();
-
-        // foreach($produits as $p) {
-        //     dump($p);
-        // }
-
-        // die;
-
-        return $this->render('tag/produits.html.twig', [
-            'produits'  => $produits,
-            'tag'       => $tag->getNom()
-        ]);
-    }
 }
