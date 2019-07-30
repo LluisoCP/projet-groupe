@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Projet.com{% endblock %}</title>
+        {# view port width #}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {# FontAwesome #}
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css?family=Ropa+Sans&display=swap" rel="stylesheet">
@@ -50,7 +52,7 @@
             {% endif %}
         
         {% endblock %}
-        
+
         {% block footer %}
             {{ render(controller('App\\Controller\\FooterController::index')) }}
         {% endblock %}

@@ -1,5 +1,7 @@
 {% block panier %}
-    <div class="d-none d-sm-block" id="minipanier">
+<div id="minipanier">
+
+    <div class="d-none d-sm-block" id="minipanier-complet">
         <h5 id="toggle-panier" class="text-center">Mon Panier <i class="fas fa-sort-down"></i></h5>
         <div id="minipanier-content">
             {% if paniers %}
@@ -41,6 +43,11 @@
         </div>
     </div>
     <div class="d-block d-sm-none">
-        <a href="{{ path('panier') }}" class="btn btn-sm btn-info">Mon Panier</a>
+        <span class="float-right">
+            <a href="{{ path('panier') }}" class="btn btn-sm btn-info">Mon Panier</a>
+        </span>
     </div>
+
+</div>
+
 {% endblock %}
