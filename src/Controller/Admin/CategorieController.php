@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
 use App\Form\CategorieType;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/categorie")
+ * @Route("/admin/categorie")
  */
 class CategorieController extends AbstractController
 {
@@ -19,9 +19,9 @@ class CategorieController extends AbstractController
     /**
      * @Route("/", name="categorie_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(CategorieRepository $categorie_repository): Response
     {
-        $categories = $this->repository->findAll();
+        $categories = $categorie_repository->findAll();
         return $this->render('categorie/index.html.twig', [
             'categories' => $categories,
         ]);

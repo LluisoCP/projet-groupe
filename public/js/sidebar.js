@@ -19,8 +19,8 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    // $('#accordion').click(function() {
-    //     $('#results').html('');
+    // $('#accordion h2').click(function() {
+    //     $('#results').fadeOut();
     // })
 
     const   trigger = $('#lance-recherche'),
@@ -41,6 +41,7 @@ jQuery(document).ready(function ($) {
                 price: price
             },
             beforeSend: function () {
+                
                 results.append('<div id="spinner" class="text-center mt-5"><i id="spinning" class="fas fa-spinner"></i></div>');
             },
             success: function(products) {

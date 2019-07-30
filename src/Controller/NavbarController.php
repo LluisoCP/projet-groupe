@@ -26,20 +26,21 @@ class NavbarController extends AbstractController
         else if ($auth->isGranted("ROLE_USER"))
         {
             $liens = [
-                ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
-                ['href' => 'about',         'lib' => 'About',            'icon' => 'fab fa-product-hunt'],
-                ['href' => 'contact',       'lib' => 'Contact',         'icon' => 'fas fa-plus-circle']
+                ['href' => 'about',         'lib' => 'About',           'icon' => 'fab fa-product-hunt'],
+                ['href' => 'contact',       'lib' => 'Contact',         'icon' => 'fas fa-plus-circle'],
+                ['href' => 'panier',        'lib' => 'Mon panier',      'icon' => 'fas fa-shopping-basket'],
+                ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off']
             ];
         }
         else
         {
             $liens = [
+                ['href' => 'about',          'lib' => 'About',            'icon' => 'fab fa-product-hunt'],
+                ['href' => 'contact',       'lib' => 'Contact',         'icon' => 'fas fa-plus-circle'],
                 ['href' => 'app_login',     'lib' => 'Login',           'icon' => 'fas fa-sign-in-alt'],
                 ['href' => 'app_register',  'lib' => 'Sign Up',         'icon' => 'fas fa-user-plus'],
                 // ['href' => 'produits',      'lib' => 'Produits',        'icon' => 'fab fa-product-hunt'],
-                ['href' => 'about',          'lib' => 'About',            'icon' => 'fab fa-product-hunt'],
                 // ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
-                ['href' => 'contact',       'lib' => 'Contact',         'icon' => 'fas fa-plus-circle']
 
             ];
         }

@@ -21,11 +21,11 @@
                 <td class="align-middle"><a href="{{ path('produit', {id:panier.produit.id}) }}">{{ panier.produit.getNom() }}</a></td>
                 <td class="align-middle">{{ panier.getPrixUnite() }}</td>
                 <td class="align-middle">
-                    <form action="" method="POST">
+                    <form action="{{ path('modifier_panier') }}" method="POST">
                         <div class="form-group row">
                             <input name="quantite" class="text-center form-control col-4 offset-2 col-form-label" type="number"
                                 value="{{ panier.quantite }}" min="0" max="{{ panier.produit.stock }}">
-                            <input type="hidden" name="panier" value="{{ panier.id }}">
+                            <input type="hidden" name="panier_id" value="{{ panier.id }}">
                             <div class="col-4">
                                 <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i></button>
                             </div>
@@ -34,13 +34,20 @@
                 </td>
                 <td class="align-middle">{{ panier.montant }}</td>
                 <td class="align-middle">
-                    <a id="" href="{{ path('vider_panier', {id: panier.id}) }}" class="btn btn-danger">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
+                    <form action="{{ path('supprimer_panier') }}" method="POST">
+                        <input type="hidden" name="panier_id" value="{{ panier.id }}">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
 
+{% endblock %}
+
+{% block panier %}
+    
 {% endblock %}
