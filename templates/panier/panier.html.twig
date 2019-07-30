@@ -4,6 +4,19 @@
 
 {% block body %}
 
+<!-- Modal -->
+{# <div id="modal">
+    <div>
+        <h4 class="text-center">Supprimer un produit</h4>
+        <p class="text-center">Êtes-vous sûr de supprimer cet produit?</p>
+        <div id="buttons">
+            <a id="cancel" href="#" class="btn btn-sm btn-secondary mb-2">Annuler</a>
+            <a id="delete" href="#" class="btn btn-sm btn-danger mb-2">Supprimer</a>
+        </div>
+    </div>
+</div> #}
+<!-- End Modal -->
+
 <h2 class="text-center">{{ titre }}</h2>
 <table class="table">
     <thead>
@@ -48,6 +61,13 @@
 
 {% endblock %}
 
+
+{% block javascripts %}
+<script src="{{ asset('js/modals.js') }}"></script>
+
+{% endblock %}
+
+{# Vide le block panier lorsqu'on le visite #}
 {% block panier %}
     
 {% endblock %}

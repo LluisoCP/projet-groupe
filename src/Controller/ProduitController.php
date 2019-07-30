@@ -37,8 +37,15 @@ class ProduitController extends AbstractController
     {
         $price = $request->query->get('price');
         $order = $request->query->get('order');
-        $produits = $produit_repository->findByPrice($price, $order);
-
+        $word = $request->query->get('nom');
+        if ($word != '')
+        {
+            $produits = $produit_repository->findByPriceAndWord($price, $word, $order);
+        }
+        else
+        {
+            $produits = $produit_repository->findByPrice($price, $order);
+        }
         $jsonProduits = $serializer->serialize($produits, 'json', [
             'circular_reference_handler' => function ($object) {
                 return $object->getId();
@@ -47,7 +54,7 @@ class ProduitController extends AbstractController
 
         return new Response($jsonProduits, 200, ['Content-Type' => 'application/json']);
     }
-
+    //Ici il faudrait ajouter @isGranted("ROLE_ADMIN")
     /**
      * @Route("/create", name="createProduit", methods={"GET", "POST"})
      */
@@ -66,6 +73,8 @@ class ProduitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+            
+            $this->addFlash('success', 'Un nouveau produit a été ajouté.');
 
             // 1. Rediect:
             return $this->redirectToRoute('home');
