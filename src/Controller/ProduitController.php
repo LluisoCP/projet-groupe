@@ -82,8 +82,8 @@ class ProduitController extends AbstractController
              * 2. Display same page: (sans handleRequest())
              * unset($form);
              * unset($deet);
-             * $deet = new Deet();
-             * $form = $this->createForm(DeetType::class, $deet);
+             * $produit = new Produit();
+             * $form = $this->createForm(ProduitType::class, $produit);
              */
         }
 

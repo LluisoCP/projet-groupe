@@ -5,16 +5,16 @@
 {% block body %}
 
 <!-- Modal -->
-{# <div id="modal">
+<div id="modal">
     <div>
         <h4 class="text-center">Supprimer un produit</h4>
-        <p class="text-center">Êtes-vous sûr de supprimer cet produit?</p>
+        <p class="text-center">Êtes-vous sûr de supprimer ce produit?</p>
         <div id="buttons">
             <button id="cancel" class="btn btn-sm btn-secondary mb-2">Annuler</button>
             <button id="delete" class="btn btn-sm btn-danger mb-2">Supprimer</button>
         </div>
     </div>
-</div> #}
+</div>
 <!-- End Modal -->
 
 <h2 class="text-center">{{ titre }}</h2>
@@ -34,24 +34,28 @@
                 <td class="align-middle"><a href="{{ path('produit', {id:panier.produit.id}) }}">{{ panier.produit.getNom() }}</a></td>
                 <td class="align-middle">{{ panier.getPrixUnite() }}</td>
                 <td class="align-middle">
-                    <form class="form" action="{{ path('modifier_panier') }}" method="POST">
-                        <div class="form-group row">
-                            <input name="quantite" class="text-center form-control col-4 offset-2 col-form-label" type="number"
+                    <form class="form align-middle" action="{{ path('modifier_panier') }}" method="POST">
+                        <div class="form-group row align-items-center mb-0">
+                            <input name="quantite" class="text-center form-control col-6 offset-2 col-form-label" type="number"
                                 value="{{ panier.quantite }}" min="0" max="{{ panier.produit.stock }}">
                             <input type="hidden" name="panier_id" value="{{ panier.id }}">
                             <div class="col-4">
-                                <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                <p>
+                                    <input type="submit" class="modifie action" value=""/>
+                                    <i class="fas fa-edit"></i>
+                                </p>
                             </div>
                         </div>
                     </form>
                 </td>
                 <td class="align-middle">{{ panier.montant }}</td>
                 <td class="align-middle">
-                    <form action="{{ path('supprimer_panier') }}" method="POST">
+                    <form class="form" action="{{ path('supprimer_panier') }}" method="POST">
                         <input type="hidden" name="panier_id" value="{{ panier.id }}">
-                        <button type="submit" class="btn btn-danger">
+                        <p>
+                            <input type="submit" class="action supprime" value=""/>
                             <i class="fas fa-trash-alt"></i>
-                        </button>
+                        </p>
                     </form>
                 </td>
             </tr>

@@ -81,9 +81,10 @@ i   {
 .ui-state-hover {
     color: white;
 }
-/* #accordion-categorie {
-
-} */
+#accordion-categories {
+    font-size: 1.2em;
+    font-weight: bold;
+}
 #search {
     font-size: 1.2em;
     color: white;
@@ -128,7 +129,7 @@ input[type="range"] {
 /* Mini panier*/
 #minipanier {
 
-    width: 300px; /*??*/
+    /* width: 300px; ?? */
     position: fixed;
     right: 30px;
     top: 50px;
@@ -159,13 +160,14 @@ input[type="range"] {
     transform: translateX(-50%);
     max-width: 80%;
     font-size: 2em;
+    border: 2px solid black;
 }
 
 /* Modals pour confirmer les suppresions */
 #modal {
     display: none;
     z-index: 100;
-    position: absolute;
+    position: fixed;
     height: 100vh;
     width: 100vw;
     top: 0;
@@ -192,4 +194,45 @@ input[type="range"] {
     margin: 1em auto 0;
     display: flex;
     justify-content: space-between;
+}
+/* Panier */
+.action {
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    position: absolute;
+    background: none;
+    border: none !important;
+    outline: none !important;
+}
+.action:hover, .action:active {
+    background: none;
+    outline: none;
+}
+.form {
+    display: inline-block;
+}
+.form[type="number"] {
+    display: block;
+    width: 50px;
+}
+.form p{
+    position: relative;
+    margin-bottom: 0;
+}
+.form p i {
+    color: black;
+    margin: auto;
+    font-size: 1.2em;
+    border-radius: 5px;
+    pointer-events: none;
+    padding: 10px;
+}
+
+.form p .supprime ~ i {
+    background-color: #dc3545;
+}
+.form p .modifie ~ i {
+    background-color: #ffc107;
 }
