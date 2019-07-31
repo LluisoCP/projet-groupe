@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorie index{% endblock %}
+{% block title %}Categories{% endblock %}
 
 {% block body %}
-    <h1>Categorie index</h1>
-
-    <table class="table">
+    <h1 class="admin-title text-center">CATEGORIES</h1>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary" href="{{ path('categorie_new') }}">Ajouter Catégorie</a>
+    </div>
+    <table class="table table-striped admin-table">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>Id</th>
                 <th>Nom</th>
                 <th>actions</th>
@@ -15,21 +17,20 @@
         </thead>
         <tbody>
         {% for categorie in categories %}
-            <tr>
+            <tr class="text-center">
                 <td>{{ categorie.id }}</td>
                 <td>{{ categorie.nom }}</td>
                 <td>
-                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('categorie_show', {'id': categorie.id}) }}">Voir</a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('categorie_edit', {'id': categorie.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
+            <tr class="text-center">
+                <td colspan="3">Pas de catégories!</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('categorie_new') }}">Create new</a>
 {% endblock %}

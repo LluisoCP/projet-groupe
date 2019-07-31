@@ -9,6 +9,9 @@ body {
     margin: 0;
     font-family: 'Ropa Sans', sans-serif;
 }
+a:hover {
+    text-decoration: none;
+}
 * {
     box-sizing: border-box;
 }
@@ -35,7 +38,9 @@ i   {
 #header {
     background-color: rgba(4, 52, 122, 0.87)  
 }
-
+#bienvenue {
+    color: white;
+}
 #nav {
     background-color: rgba(59, 104, 185, 0.8)
 }
@@ -44,23 +49,29 @@ i   {
     background-color: rgba(59, 104, 185, 0.8);
     width: 385px;
 }
-.milieu     {
-            background-color: rgba(36, 87, 182, 0.8);
-            }
-#body   {
-        background-color: rgba(230, 230, 230, 1);
-        max-width: 1205px;
-        }
+.milieu {
+    background-color: rgba(36, 87, 182, 0.8);
+}
+#body {
+    background-color: rgba(230, 230, 230, 1);
+    max-width: 1205px;
+}
 
 #footer {
-        background-color: rgba(4, 52, 122, 0.87);
-        }
+    background-color: rgba(4, 52, 122, 0.87);
+}
+#footer #icons-container h5 {
+    margin-bottom: 0;
+}
+#footer #icons {
+    font-size: 1.5em;
+}
         
 #footer h5  {
-            color: goldenrod
-            }
+    color: goldenrod
+}
 
-.lien   {
+.lien, #nav .lien   {
     color: rgba(253, 249, 40, 0.87);
     /*font-size: 75%;*/
     }
@@ -73,6 +84,15 @@ i   {
 /*Accordion et formulaire*/
 #accordion {
     padding-top: 30px;
+}
+#accordion a, #accordion h2 {
+    cursor: pointer;
+}
+#accordion a {
+    transition: color .2s linear;
+}
+#accordion a:hover {
+    color: #6cabe2;
 }
 .ui-accordion-header {
     transition: color .3s linear;
@@ -90,9 +110,10 @@ article     {
 .ui-state-hover {
     color: white;
 }
-/* #accordion-categorie {
-
-} */
+#accordion-categories {
+    font-size: 1.2em;
+    font-weight: bold;
+}
 #search {
     font-size: 1.2em;
     color: white;
@@ -137,7 +158,7 @@ input[type="range"] {
 /* Mini panier*/
 #minipanier {
 
-    width: 300px; /*??*/
+    /* width: 300px; ?? */
     position: fixed;
     right: 30px;
     top: 50px;
@@ -168,13 +189,14 @@ input[type="range"] {
     transform: translateX(-50%);
     max-width: 80%;
     font-size: 2em;
+    border: 2px solid black;
 }
 
 /* Modals pour confirmer les suppresions */
 #modal {
     display: none;
     z-index: 100;
-    position: absolute;
+    position: fixed;
     height: 100vh;
     width: 100vw;
     top: 0;
@@ -201,4 +223,59 @@ input[type="range"] {
     margin: 1em auto 0;
     display: flex;
     justify-content: space-between;
+}
+/* Panier */
+.action {
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    position: absolute;
+    background: none;
+    border: none !important;
+    outline: none !important;
+}
+.action:hover, .action:active {
+    background: none;
+    outline: none;
+}
+.form {
+    display: inline-block;
+}
+.form[type="number"] {
+    display: block;
+    width: 50px;
+}
+.form p{
+    position: relative;
+    margin-bottom: 0;
+}
+.form p i {
+    color: black;
+    margin: auto;
+    font-size: 1.2em;
+    border-radius: 5px;
+    pointer-events: none;
+    padding: 10px;
+}
+
+.form p .supprime ~ i {
+    background-color: #dc3545;
+}
+.form p .modifie ~ i {
+    background-color: #ffc107;
+}
+
+/* Admin */
+
+/* Tables d'affichage admin*/
+.admin-table {
+    font-size: 1.4em;
+}
+/* Nom de etiquette | catégorie | produit dans admin/edit */
+.admin-nom {
+    color: #a01a13;
+}
+.admin-title {
+    font-weight: bold;
 }

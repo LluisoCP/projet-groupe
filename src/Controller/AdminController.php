@@ -68,12 +68,12 @@ class AdminController extends AbstractController
     /**
      * @Route("/ajout_produit", name="admin_ajout_produits", methods={"GET", "POST"})
      */
-    public function ajout_produit(Request $request)
-    {
-        $product = new Produit();
-        return $this->render('admin/produits.html.twig', [
-            'produits' => $produits,
-        ]);
+    // public function ajout_produit(Request $request)
+    // {
+    //     $product = new Produit();
+    //     return $this->render('admin/produits.html.twig', [
+    //         'produits' => $produits,
+    //     ]);
 
-    }
+    // }
 }

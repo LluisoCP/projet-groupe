@@ -56,7 +56,8 @@ class TagController extends AbstractController
     public function show(Tag $tag): Response
     {
         return $this->render('tag/show.html.twig', [
-            'tag' => $tag
+            'tag' => $tag,
+            'nom' => $tag->getNom()
         ]);
     }
 
@@ -76,6 +77,7 @@ class TagController extends AbstractController
 
         return $this->render('tag/edit.html.twig', [
             'tag' => $tag,
+            'nom' => $tag->getNom(),
             'form' => $form->createView(),
         ]);
     }

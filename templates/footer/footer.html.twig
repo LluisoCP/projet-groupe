@@ -1,16 +1,16 @@
 <div id="footer" class="container-fluid">
     <div class="col-12 row">
 
-        <div class="container">
+        <div class="container py-3">
             <div class="row">
-                <div class="col-3">
+                <div class="text-center col-3">
                     <h5>Catégorie</h5>
                     <ul>
                         {% for categorie in categories %}
                         <li><a href="{{ path('categorie_produits', {nom:categorie.nom}) }}" class="lien">{{ categorie.nom }}</a></li>
                         {% endfor %}
                     </div>
-                    <div class="col-3">
+                    <div class="text-center col-3">
                         <h5>Contacte</h5>
                     <ul>
                         <li><a href="{{ path('service_client') }}" class="lien">Service Client</a></li>
@@ -19,7 +19,7 @@
                         <li><a href="{{ path('service_presse') }}" class="lien">Espace Presse</a></li>
                     </ul>
                 </div>
-                <div class="col-3">
+                <div class="text-center col-3">
                     <h5>A propos</h5>
                     <ul>
                         <li><a href="{{ path('about') }}" class="lien">Qui sommes nous?</a></li>
@@ -28,7 +28,7 @@
                         <li><a href="{{ path('mentions_legales') }}" class="lien">Information légales</a></li>
                     </ul>
                 </div>
-                <div class="col-3">
+                <div class="text-center col-3">
                     <h5>Projet.com et vous</h5>
                     <ul>
                         <li><a href="{{ path('nos_valeurs') }}" class="lien">Nos valeurs</a></li>
@@ -40,13 +40,15 @@
                 </div>
             </div>
             
-            <div class="col-12 row d-flex justify-content-center">
-                <h5>Retrouvez nous sur: </h5><br />
-                <a href="#"><i class="fab fa-facebook-square lien"></i></a>
-                <a href="#"><i class="fab fa-twitter-square lien"></i></a>
-                <a href="#"><i class="fab fa-youtube lien"></i></a>
-                <a href="#"><i class="fab fa-twitch lien"></i></a>
-                <a href="#"><i class="fab fa-instagram lien"></i></a>
+            <div id="icons-container" class="col-12 row d-flex justify-content-center align-items-center flex-column flex-sm-row">
+                <h5>Retrouvez nous sur:</h5>
+                <div id="icons">
+                    <a href="#"><i class="fab fa-facebook-square lien"></i></a>
+                    <a href="#"><i class="fab fa-twitter-square lien"></i></a>
+                    <a href="#"><i class="fab fa-youtube lien"></i></a>
+                    <a href="#"><i class="fab fa-twitch lien"></i></a>
+                    <a href="#"><i class="fab fa-instagram lien"></i></a>
+                </div>
             </div>
         </div>
 

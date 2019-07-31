@@ -19,15 +19,22 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
+            ->add('prenom', TextType::class, [
+                'label' => 'Prénom',
+            ])
             ->add('adresse', TextType::class)
             ->add('ville', TextType::class)
-            ->add('cp', TextType::class)
-            ->add('telephone', TextType::class)
+            ->add('cp', TextType:: class, [
+                'label' => 'Code Postal',
+            ])
+            ->add('telephone', TextType:: class, [
+                'label' => 'Téléphone',
+            ])
             ->add('email')
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'Mot de passe',
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -42,10 +49,11 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'J\'accepte les conditions d\'utilisation.',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'L\'acceptation des conditions est obligatoire.',
                     ]),
                 ],
             ])

@@ -13,15 +13,16 @@ class NavbarController extends AbstractController
         if ($auth->isGranted("ROLE_ADMIN"))
         {
             $liens = [
-                // ['href' => 'clients',       'lib' => 'Clients',         'icon' => 'fas fa-user'],
-                // ['href' => 'paniers',    'lib' => 'Paniers',      'icon' => 'fas fa-shopping-basquet'],
-                ['href' => 'createProduit', 'lib' => 'Ajout Produit',   'icon' => 'fas fa-plus-circle'],
-                // ['href' => 'ajout_tag', 'lib' => 'Ajout Etiquette',   'icon' => 'fas fa-plus-circle'],
-                // ['href' => 'ajout_categorie', 'lib' => 'Ajout Categorie',   'icon' => 'fas fa-plus-circle'],
-                ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
-
-
+                // ['href' => 'admin_clients',       'lib' => 'Clients',         'icon' => 'fas fa-users'],
+                ['href' => 'admin_produits',    'lib' => 'Produits',        'icon' => 'fab fa-product-hunt'],
+                // ['href' => 'admin_paniers',    'lib' => 'Paniers',      'icon' => 'fas fa-shopping-basquet'],
+                ['href' => 'createProduit',     'lib' => 'Ajout Produit',   'icon' => 'fas fa-plus-circle'],
+                ['href' => 'tag_index',         'lib' => 'Etiquettes',      'icon' => 'fas fa-tags'],
+                ['href' => 'categorie_index',   'lib' => 'Categories',      'icon' => 'fas fa-layer-group'],
+                ['href' => 'app_logout',        'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
             ];
+
+            $bienvenue = 'Bienvenue à votre espace admin';
         }
         else if ($auth->isGranted("ROLE_USER"))
         {
@@ -31,6 +32,7 @@ class NavbarController extends AbstractController
                 ['href' => 'panier',        'lib' => 'Mon panier',      'icon' => 'fas fa-shopping-basket'],
                 ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off']
             ];
+            $bienvenue = 'Bienvenue à votre espace projet.com';
         }
         else
         {
@@ -41,12 +43,13 @@ class NavbarController extends AbstractController
                 ['href' => 'app_register',  'lib' => 'Sign Up',         'icon' => 'fas fa-user-plus'],
                 // ['href' => 'produits',      'lib' => 'Produits',        'icon' => 'fab fa-product-hunt'],
                 // ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
-
             ];
+            $bienvenue = '';
         }
 
         return $this->render('navbar/navbar.html.twig', [
-            'liens'     => $liens
+            'liens'     => $liens,
+            'bienvenue' => $bienvenue
         ]);
     }
 }

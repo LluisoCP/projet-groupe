@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tag index{% endblock %}
+{% block title %}Etiquettes{% endblock %}
 
 {% block body %}
-    <h1>Tag index</h1>
-
-    <table class="table">
+    <h1 class="admin-title text-center">ETIQUETTES</h1>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary" href="{{ path('tag_new') }}">Ajouter Etiquette</a>
+    </div>
+    <table class="table table-striped admin-table">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>Id</th>
                 <th>Nom</th>
                 <th>actions</th>
@@ -15,21 +17,20 @@
         </thead>
         <tbody>
         {% for tag in tags %}
-            <tr>
+            <tr class="text-center">
                 <td>{{ tag.id }}</td>
                 <td>{{ tag.nom }}</td>
                 <td>
-                    <a href="{{ path('tag_show', {'id': tag.id}) }}">show</a>
-                    <a href="{{ path('tag_edit', {'id': tag.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('tag_show', {'id': tag.id}) }}">Voir</a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('tag_edit', {'id': tag.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
+            <tr class="text-center">
+                <td colspan="3">Pas d'etiquettes!</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('tag_new') }}">Create new</a>
+    
 {% endblock %}

@@ -34,8 +34,8 @@
                 </tbody>
             </table>
             <div id="edit-mini" class="d-flex justify-content-around">
-                <a href="{#{{ path() }}#}" type="button" class="btn btn-warning">Editer</a>
-                <a href="{#{{ path() }}#}" type="button" class="btn btn-danger">Vider</a>
+                <a href="{{ path('panier') }}" type="button" class="btn btn-warning">Editer</a>
+                <a href="{{ path('vider_panier') }}" type="button" class="btn btn-danger">Vider</a>
             </div>
             {% else %}
                 Vous n'avez pas de produits dans votre panier.
