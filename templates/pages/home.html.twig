@@ -6,7 +6,7 @@
 <h2 class="titre">
     Liste des produits
 </h2>
-<div class='row'>
+<div class='row resultat'>
     {% for produit in liste %}
     <article class="col-4 card py-2">
         <img    src="{{ produit.image ? asset('img/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
