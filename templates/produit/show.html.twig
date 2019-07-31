@@ -19,7 +19,6 @@
                 <li>Stock: {{produit.stock}}</li>
                 <li>Prix: {{produit.prix}}€</li>
             </ul>
-            <a href="{{ path('produit', {'id': produit.id}) }}" class="btn btn-success">Voir Produit</a>
             <hr>
             <form action="{{ path('ajout_panier') }}" method="POST">
                 <div class="d-flex flex-column">
@@ -27,7 +26,7 @@
                     <div class="form-group row">
                         <label for="quantite" class="text-right col-sm-4 col-form-label">Quantité</label>
                         <div class="col-sm-4">
-                            <input type="number" min="1" max="{{ produit.stock }}" class="form-control" id="quantite" name="quantite">
+                            <input type="number" min="1" max="{{ produit.stock }}" class="form-control" id="quantite" name="quantite" required>
                             <input type="hidden" name="id" value="{{ produit.id }}">
                         </div>
                         <div class="col-sm-4">

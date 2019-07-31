@@ -48,8 +48,9 @@ class PanierController extends AbstractController
     public function ajouter(Request $request, ProduitRepository $produit_repository, PanierRepository $panier_repository)
     {
         $utilisateur = $this->getUser();
+        // $quantite = $request->request->get('quantite');
         $ajout_quantite = $request->request->get('quantite');
-        $article = $produit_repository->find($request->request-get('id'));
+        $article = $produit_repository->find($request->request->get('id'));
         $prix = $article->getPrix();
         $ajout_montant = $prix * $ajout_quantite;
         $date = new \DateTime();
