@@ -1,5 +1,3 @@
-const a = document.getElementsByTagName('a');
-const i = document.getElementsByTagName('i');
 const lien = document.getElementsByClassName('lien');
 
 jQuery('.lien').on('mouseover', action);
@@ -13,4 +11,3 @@ function reaction()
 {
     $(this).css('color', 'rgba(253, 249, 40, 0.87)');
 }
-

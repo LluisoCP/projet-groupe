@@ -27,7 +27,7 @@ class Client implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = ["ROLE_USER"];
+    private $roles = ["ROLE_ADMIN"];
 
     /**
      * @var string The hashed password

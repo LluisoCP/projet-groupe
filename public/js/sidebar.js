@@ -55,7 +55,7 @@ jQuery(document).ready(function ($) {
 
                     results.append('<ul id="list-results" class="list-group list-group-flush">');
                     for (let product of products) {
-                        results.append('<li class="bg-warning list-group-item"><a href="/produit/' + product.id + '">' + product.nom + '</a> (' + product.categorie.nom + ') - '+ product.prix +'€</li>')
+                        results.append('<li class="bg-warning list-group-item"><a href="/produits/produit/' + product.id + '">' + product.nom + '</a> (' + product.categorie.nom + ') - '+ product.prix +'€</li>')
                     }
                     results.append('</ul">');
                 }
