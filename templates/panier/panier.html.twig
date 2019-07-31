@@ -4,6 +4,19 @@
 
 {% block body %}
 
+<!-- Modal -->
+{# <div id="modal">
+    <div>
+        <h4 class="text-center">Supprimer un produit</h4>
+        <p class="text-center">Êtes-vous sûr de supprimer cet produit?</p>
+        <div id="buttons">
+            <button id="cancel" class="btn btn-sm btn-secondary mb-2">Annuler</button>
+            <button id="delete" class="btn btn-sm btn-danger mb-2">Supprimer</button>
+        </div>
+    </div>
+</div> #}
+<!-- End Modal -->
+
 <h2 class="text-center">{{ titre }}</h2>
 <table class="table">
     <thead>
@@ -21,7 +34,7 @@
                 <td class="align-middle"><a href="{{ path('produit', {id:panier.produit.id}) }}">{{ panier.produit.getNom() }}</a></td>
                 <td class="align-middle">{{ panier.getPrixUnite() }}</td>
                 <td class="align-middle">
-                    <form action="{{ path('modifier_panier') }}" method="POST">
+                    <form class="form" action="{{ path('modifier_panier') }}" method="POST">
                         <div class="form-group row">
                             <input name="quantite" class="text-center form-control col-4 offset-2 col-form-label" type="number"
                                 value="{{ panier.quantite }}" min="0" max="{{ panier.produit.stock }}">
@@ -48,6 +61,13 @@
 
 {% endblock %}
 
+
+{% block javascripts %}
+<script src="{{ asset('js/modals.js') }}"></script>
+
+{% endblock %}
+
+{# Vide le block panier lorsqu'on le visite #}
 {% block panier %}
     
 {% endblock %}

@@ -1,9 +1,9 @@
 <div id="accordion">
     <h2 class="text-center">Catégories</h2>
     <div class="accordion-item">
-        <ul class="list-group list-group-flush text-center">
+        <ul id="accordion-categories" class="list-group list-group-flush text-center">
             {% for category in categories %}
-            <li class="list-group-item"><a href="{{ path('cat_produits', {nom: category.nom}) }}">{{ category.nom }}</a></li>
+            <li class="bg-warning list-group-item"><a href="{{ path('cat_produits', {nom: category.nom}) }}">{{ category.nom }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -24,8 +24,8 @@
     <h2 class="text-center">Recherche</h2>
     <div class="accordion-item" id="search">
         <div class="form-group">
-            <label>Nom/mot cle</label>
-            <input type="text" class="form-control">
+            <label for="nom">Nom/mot cle</label>
+            <input id="nom" name="nom" type="text" class="form-control">
         </div>
         <div class="form-group">
             <label class="d-block" for="maxprice">Prix maximal: <span id="price-selected">20&euro;</span></label>

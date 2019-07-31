@@ -45,6 +45,20 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByPriceAndWord(float $price, string $word, string $order = 'ASC')
+    {
+        $word = '%' . $word . '%';
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.prix <= :val')
+            ->setParameter('val', $price)
+            ->andWhere('p.nom LIKE :nom')
+            ->setParameter('nom', $word)
+            ->orderBy('p.prix', $order)
+            ->getQuery()
+            ->getResult();
+    }
+
 //Fonction permettant de trouver un produit par son ID
     public function findById(int $id)
     {

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\ProduitType;
+use App\Service\FileUploader;
 
 /**
  * @Route("/produits")
@@ -29,21 +30,51 @@ class ProduitController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/results", name="results")
+     */
+    public function results(Request $request, ProduitRepository $produit_repository, SerializerInterface $serializer)
+    {
+        $price = $request->query->get('price');
+        $order = $request->query->get('order');
+        $word = $request->query->get('nom');
+        if ($word != '')
+        {
+            $produits = $produit_repository->findByPriceAndWord($price, $word, $order);
+        }
+        else
+        {
+            $produits = $produit_repository->findByPrice($price, $order);
+        }
+        $jsonProduits = $serializer->serialize($produits, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
 
-
+        return new Response($jsonProduits, 200, ['Content-Type' => 'application/json']);
+    }
+    //Ici il faudrait ajouter @isGranted("ROLE_ADMIN")
     /**
      * @Route("/create", name="createProduit", methods={"GET", "POST"})
      */
-    public function createProduit(Request $request)
+    public function createProduit(Request $request, FileUploader $uploader)
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form['image']->getData();
+            // $image = $produit->getImage();
+            $filename = $uploader->upload($image);
+            $produit->setImage($filename);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+            
+            $this->addFlash('success', 'Un nouveau produit a été ajouté.');
 
             // 1. Rediect:
             return $this->redirectToRoute('home');

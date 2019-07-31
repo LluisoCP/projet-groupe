@@ -30,15 +30,18 @@ jQuery(document).ready(function ($) {
         results.html('');
         $('#no-products').remove();
         let order = $('input[type="radio"]:checked').val(),
-            price = $('#maxprice').val();
-        console.log('Prix: ' + price + ' en ordre ' + order);
+            price = $('#maxprice').val(),
+            nom = $('#nom').val();
+            console.log('Prix: ' + price + ' en ordre ' + order + ' avec mot ' + nom);
+            // nom = nom.length == 0 ? 'null' : nom;
         $.ajax({
-            url: 'results',
+            url: 'produits/results',
             type: 'GET',
             dataType: 'json',
             data: {
                 order: order,
-                price: price
+                price: price, 
+                nom: nom
             },
             beforeSend: function () {
                 
@@ -52,7 +55,7 @@ jQuery(document).ready(function ($) {
 
                     results.append('<ul id="list-results" class="list-group list-group-flush">');
                     for (let product of products) {
-                        results.append('<li class="list-group-item"><a href="/produit/' + product.id + '">' + product.nom + '</a> (' + product.categorie.nom + ') - '+ product.prix +'€</li>')
+                        results.append('<li class="bg-warning list-group-item"><a href="/produit/' + product.id + '">' + product.nom + '</a> (' + product.categorie.nom + ') - '+ product.prix +'€</li>')
                     }
                     results.append('</ul">');
                 }

@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Categorie;
 use App\Entity\Tag;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProduitType extends AbstractType
 {
@@ -17,7 +18,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('reference')
             ->add('nom')
-            ->add('image')
+            ->add('image', FileType::class)
             ->add('prix')
             ->add('description')
             ->add('stock')
@@ -29,7 +30,9 @@ class ProduitType extends AbstractType
             ])
             ->add('tags', EntityType::class, [
                 'class' => Tag::class,
-                'choice_label' => 'nom'
+                'choice_label' => 'nom',
+                'multiple' => true,
+                'expanded' => true
             ])
         ;
     }
