@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Tag{% endblock %}
+{% block title %}Editer Etiquette{% endblock %}
 
 {% block body %}
-    <h1>Edit Tag</h1>
+    <h1 class="admin-title text-center">Editer etiquette <span class="admin-nom">{{ nom }}</span></h1>
 
-    {{ include('tag/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('tag_index') }}">back to list</a>
+    {{ include('tag/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+    <div class="my-2">
+        <a class="btn btn-primary" href="{{ path('tag_index') }}">Retourner à la liste</a>
+    </div>
 
     {{ include('tag/_delete_form.html.twig') }}
 {% endblock %}

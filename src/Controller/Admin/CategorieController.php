@@ -50,6 +50,18 @@ class CategorieController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/{id}", name="categorie_show", methods={"GET"})
+     */
+    public function show(Categorie $categorie): Response
+    {
+        return $this->render('categorie/show.html.twig', [
+            'categorie' => $categorie,
+            'nom'       => $categorie->getNom()
+        ]);
+    }
+
     /**
      * @Route("/{nom}", name="categorie_produits", methods={"GET"})
      */
@@ -59,16 +71,6 @@ class CategorieController extends AbstractController
         return $this->render('categorie/produits.html.twig', [
             'produits'  => $produits,
             'categorie' => $categorie->getNom()
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="categorie_show", methods={"GET"})
-     */
-    public function show(Categorie $categorie): Response
-    {
-        return $this->render('categorie/show.html.twig', [
-            'categorie' => $categorie,
         ]);
     }
 
@@ -88,6 +90,7 @@ class CategorieController extends AbstractController
 
         return $this->render('categorie/edit.html.twig', [
             'categorie' => $categorie,
+            'nom' => $categorie->getNom(),
             'form' => $form->createView(),
         ]);
     }

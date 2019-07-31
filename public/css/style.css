@@ -9,6 +9,9 @@ body {
     margin: 0;
     font-family: 'Ropa Sans', sans-serif;
 }
+a:hover {
+    text-decoration: none;
+}
 * {
     box-sizing: border-box;
 }
@@ -35,7 +38,9 @@ i   {
 #header {
     background-color: rgba(4, 52, 122, 0.87)  
 }
-
+#bienvenue {
+    color: white;
+}
 #nav {
     background-color: rgba(59, 104, 185, 0.8)
 }
@@ -44,23 +49,29 @@ i   {
     background-color: rgba(59, 104, 185, 0.8);
     width: 385px;
 }
-.milieu     {
-            background-color: rgba(36, 87, 182, 0.8);
-            }
-#body   {
-        background-color: rgba(230, 230, 230, 1);
-        max-width: 1205px;
-        }
+.milieu {
+    background-color: rgba(36, 87, 182, 0.8);
+}
+#body {
+    background-color: rgba(230, 230, 230, 1);
+    max-width: 1205px;
+}
 
 #footer {
-        background-color: rgba(4, 52, 122, 0.87);
-        }
+    background-color: rgba(4, 52, 122, 0.87);
+}
+#footer #icons-container h5 {
+    margin-bottom: 0;
+}
+#footer #icons {
+    font-size: 1.5em;
+}
         
 #footer h5  {
-            color: goldenrod
-            }
+    color: goldenrod
+}
 
-.lien   {
+.lien, #nav .lien   {
     color: rgba(253, 249, 40, 0.87);
     /*font-size: 75%;*/
     }
@@ -73,6 +84,15 @@ i   {
 /*Accordion et formulaire*/
 #accordion {
     padding-top: 30px;
+}
+#accordion a, #accordion h2 {
+    cursor: pointer;
+}
+#accordion a {
+    transition: color .2s linear;
+}
+#accordion a:hover {
+    color: #6cabe2;
 }
 .ui-accordion-header {
     transition: color .3s linear;
@@ -244,4 +264,18 @@ input[type="range"] {
 }
 .form p .modifie ~ i {
     background-color: #ffc107;
+}
+
+/* Admin */
+
+/* Tables d'affichage admin*/
+.admin-table {
+    font-size: 1.4em;
+}
+/* Nom de etiquette | catégorie | produit dans admin/edit */
+.admin-nom {
+    color: #a01a13;
+}
+.admin-title {
+    font-weight: bold;
 }
