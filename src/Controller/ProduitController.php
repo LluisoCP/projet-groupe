@@ -94,7 +94,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="produit", methods={"GET", "POST"})
+     * @Route("/produit/{id}", name="produit", methods={"GET", "POST"})
      */
     public function show($id, ProduitRepository $produit)
     {
