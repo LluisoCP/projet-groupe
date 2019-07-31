@@ -155,31 +155,52 @@ input[type="range"] {
 #results {
     padding: 15px 5px;
 }
+
+/* Les deux paniers */
+.total {
+    font-size: 1.4em;
+}
 /* Mini panier*/
 #minipanier {
 
     /* width: 300px; ?? */
     position: fixed;
-    right: 30px;
-    top: 50px;
+    right: 5px;
+    top: 10px;
 }
 #minipanier-complet {
+    color: white;
     padding: 10px;
     background-color: rgba(138,43,226,.4);
-    border: 2px solid blueviolet;
+    border: 2px solid black;
 }
 #minipanier-complet > h5 {
     margin-bottom: 0;
 }
 #minipanier-content {
-    background-color: blueviolet;
+    background-color: rgba(218, 219, 195, .9);
+    /* background-color: blueviolet; */
     display: none;
     margin-top: .5rem;
+}
+#minipanier-content .panier-vide {
+    color: black;
+    margin: 0;
 }
 #minipanier-complet #edit-mini {
     padding: 5px 0;
 }
-
+#minipanier-complet #edit-mini a  {
+    border-color: black;
+}
+#table-panier a {
+    color: red;
+    font-weight: bold;
+    transition: color .2s linear;
+}
+#table-panier a:hover {
+    color: rgb(131, 30, 30);
+}
 /* Alertes quand on reussit à faire une action (Flash)*/
 #flash {
     position: absolute;

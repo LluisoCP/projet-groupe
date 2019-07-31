@@ -4,7 +4,7 @@
     <div class="d-none d-sm-block" id="minipanier-complet">
         <h5 id="toggle-panier" class="text-center">Mon Panier <i class="fas fa-sort-down"></i></h5>
         <div id="minipanier-content">
-            {% if paniers %}
+            {% if user.isActive() %}
             <table id="table-panier" class="table">
                 <thead>
                     <tr class="text-center">
@@ -20,25 +20,26 @@
                         {% set total = total + panier.montant %}
                         <tr class="text-center">
                             <td><a href="{{ path('produit', {id:panier.produit.id}) }}">{{ panier.produit.getNom() }}</a></td>
-                            <td>{{ panier.getPrixUnite() }}</td>
+                            <td>{{ panier.getPrixUnite() }}&euro;</td>
                             <td>{{ panier.quantite }}</td>
-                            <td>{{ panier.montant }}</td>
+                            <td>{{ panier.montant }}&euro;</td>
                         </tr>
 
                     {% endfor %}
 
-                    <tr class="text-center">
+                    <tr class="total text-center">
                         <td class="text-right" colspan="3">Total</td>
-                        <td>{{ total }}€</td>
+                        <td>{{ total }}&euro;</td>
                     </tr>
                 </tbody>
             </table>
             <div id="edit-mini" class="d-flex justify-content-around">
+                <a href="#" type="button" class="btn btn-success">Payer</a>
                 <a href="{{ path('panier') }}" type="button" class="btn btn-warning">Editer</a>
                 <a href="{{ path('vider_panier') }}" type="button" class="btn btn-danger">Vider</a>
             </div>
             {% else %}
-                Vous n'avez pas de produits dans votre panier.
+               <p class="panier-vide">Votre panier est vide.</p>
             {% endif %}
         </div>
     </div>

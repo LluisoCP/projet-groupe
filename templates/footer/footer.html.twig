@@ -3,14 +3,14 @@
 
         <div class="container py-3">
             <div class="row">
-                <div class="text-center col-3">
+                <div class="text-center col-6 col-md-3">
                     <h5>Catégorie</h5>
                     <ul>
                         {% for categorie in categories %}
                         <li><a href="{{ path('categorie_produits', {nom:categorie.nom}) }}" class="lien">{{ categorie.nom }}</a></li>
                         {% endfor %}
-                    </div>
-                    <div class="text-center col-3">
+                </div>
+                <div class="text-center col-6 col-md-3">
                         <h5>Contacte</h5>
                     <ul>
                         <li><a href="{{ path('service_client') }}" class="lien">Service Client</a></li>
@@ -19,7 +19,7 @@
                         <li><a href="{{ path('service_presse') }}" class="lien">Espace Presse</a></li>
                     </ul>
                 </div>
-                <div class="text-center col-3">
+                <div class="text-center col-6 col-md-3">
                     <h5>A propos</h5>
                     <ul>
                         <li><a href="{{ path('about') }}" class="lien">Qui sommes nous?</a></li>
@@ -28,7 +28,7 @@
                         <li><a href="{{ path('mentions_legales') }}" class="lien">Information légales</a></li>
                     </ul>
                 </div>
-                <div class="text-center col-3">
+                <div class="text-center col-6 col-md-3">
                     <h5>Projet.com et vous</h5>
                     <ul>
                         <li><a href="{{ path('nos_valeurs') }}" class="lien">Nos valeurs</a></li>

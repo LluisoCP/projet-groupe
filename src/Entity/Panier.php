@@ -145,4 +145,9 @@ class Panier
 
         return $this;
     }
+
+    public function hasProducts() : bool
+    {
+        return $this->montant !== 0;
+    }
 }

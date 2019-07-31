@@ -302,4 +302,20 @@ class Client implements UserInterface
         }
         return null;
     }
+
+    public function isActive() : bool
+    {
+        $paniers = $this->paniers;
+        if (!$paniers)
+        {
+            return false;
+        }
+        foreach ($paniers as $panier) {
+            if ($panier->hasProducts())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

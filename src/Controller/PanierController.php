@@ -24,10 +24,12 @@ class PanierController extends AbstractController
      */
     public function index()
     {
-        $paniers = $this->getUser()->getPaniers();
+        $user = $this->getUser();
+        $paniers = $user->getPaniers();
         // dump(empty($paniers));
         // dd($paniers);
         return $this->render('panier/panier.html.twig', [
+            'user'      => $user,
             'paniers'   => $paniers,
             'titre'     => 'Mon Panier'
         ]);
@@ -35,8 +37,10 @@ class PanierController extends AbstractController
 
     public function mini()
     {
-        $paniers = $this->getUser()->getPaniers();
+        $user = $this->getUser();
+        $paniers = $user->getPaniers();
         return $this->render('panier/mini_panier.html.twig', [
+            'user'    => $user,
             'paniers' => $paniers,
         ]);
     }
@@ -96,7 +100,8 @@ class PanierController extends AbstractController
         
         $em = $this->getDoctrine()->getManager();
         
-        $paniers = $panier_repository->findAllByClient($user);
+        $paniers = $user->getPaniers();
+        // $paniers = $panier_repository->findAllByClient($user);
         foreach ($paniers as $panier) {
             $em->remove($panier);
             $em->flush();

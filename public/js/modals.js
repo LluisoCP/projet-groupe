@@ -1,6 +1,6 @@
 $.noConflict();
 jQuery(document).ready(function ($) {
-    const   forms = $('.form'),
+    const   forms = $('.supprimer'),
             cancel = $('#cancel'),
             deleter = $('#delete'),
             modal = $('#modal');

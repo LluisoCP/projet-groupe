@@ -8,7 +8,7 @@
 <div id="modal">
     <div>
         <h4 class="text-center">Supprimer un produit</h4>
-        <p class="text-center">Êtes-vous sûr de supprimer ce produit?</p>
+        <h6 class="text-center">Êtes-vous sûr de supprimer ce produit?</h3>
         <div id="buttons">
             <button id="cancel" class="btn btn-sm btn-secondary mb-2">Annuler</button>
             <button id="delete" class="btn btn-sm btn-danger mb-2">Supprimer</button>
@@ -18,51 +18,65 @@
 <!-- End Modal -->
 
 <h2 class="text-center">{{ titre }}</h2>
-<table class="table">
-    <thead>
-        <tr class="text-center">
-            <th class="align-middle">Produit</th>
-            <th class="align-middle">Prix Unitaire</th>
-            <th class="align-middle">Quantité</th>
-            <th class="align-middle">Montant</th>
-            <th class="align-middle">Supprimer</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for panier in paniers %}
+{% if user.isActive() %}
+    <table id="table-panier" class="table">
+        <thead>
             <tr class="text-center">
-                <td class="align-middle"><a href="{{ path('produit', {id:panier.produit.id}) }}">{{ panier.produit.getNom() }}</a></td>
-                <td class="align-middle">{{ panier.getPrixUnite() }}</td>
-                <td class="align-middle">
-                    <form class="form align-middle" action="{{ path('modifier_panier') }}" method="POST">
-                        <div class="form-group row align-items-center mb-0">
-                            <input name="quantite" class="text-center form-control col-6 offset-2 col-form-label" type="number"
-                                value="{{ panier.quantite }}" min="0" max="{{ panier.produit.stock }}">
-                            <input type="hidden" name="panier_id" value="{{ panier.id }}">
-                            <div class="col-4">
-                                <p>
-                                    <input type="submit" class="modifie action" value=""/>
-                                    <i class="fas fa-edit"></i>
-                                </p>
-                            </div>
-                        </div>
-                    </form>
-                </td>
-                <td class="align-middle">{{ panier.montant }}</td>
-                <td class="align-middle">
-                    <form class="form" action="{{ path('supprimer_panier') }}" method="POST">
-                        <input type="hidden" name="panier_id" value="{{ panier.id }}">
-                        <p>
-                            <input type="submit" class="action supprime" value=""/>
-                            <i class="fas fa-trash-alt"></i>
-                        </p>
-                    </form>
-                </td>
+                <th class="align-middle">Produit</th>
+                <th class="align-middle">Prix Unitaire</th>
+                <th class="align-middle">Quantité</th>
+                <th class="align-middle">Montant</th>
+                <th class="align-middle">Supprimer</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            {% set total = 0 %}
+                {% for panier in paniers %}
+                    {% set total = total + panier.montant %}
+                    <tr class="text-center">
+                        <td class="align-middle"><a href="{{ path('produit', {id:panier.produit.id}) }}">{{ panier.produit.getNom() }}</a></td>
+                        <td class="align-middle">{{ panier.getPrixUnite() }}&euro;</td>
+                        <td class="align-middle">
+                            <form class="form align-middle" action="{{ path('modifier_panier') }}" method="POST">
+                                <div class="form-group row align-items-center mb-0">
+                                    <input name="quantite" class="text-center form-control col-6 offset-2 col-form-label" type="number"
+                                        value="{{ panier.quantite }}" min="1" max="{{ panier.produit.stock }}">
+                                    <input type="hidden" name="panier_id" value="{{ panier.id }}">
+                                    <div class="col-4">
+                                        <p>
+                                            <input type="submit" class="modifie action" value=""/>
+                                            <i class="fas fa-edit"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td class="align-middle p-0">{{ panier.montant }}&euro;</td>
+                        <td class="align-middle">
+                            <form class="supprimer form" action="{{ path('supprimer_panier') }}" method="POST">
+                                <input type="hidden" name="panier_id" value="{{ panier.id }}">
+                                <p>
+                                    <input type="submit" class="action supprime" value=""/>
+                                    <i class="fas fa-trash-alt"></i>
+                                </p>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr class="total text-center">
+                    <td colspan="2">&nbsp;</td>
+                    <td class="text-right">Total</td>
+                    <td>{{ total }}&euro;</td>
+                </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <a href="#" class="btn mx-1 btn-success">Payer mon panier</a>
+        <a href="{{ path('vider_panier') }}" class="btn mx-1 btn-danger">Vider mon panier</a>
+    </div>
+{% else %}
+    <h3 class="text-center mt-5">Votre panier est vide.</h3>
+{% endif %}
 {% endblock %}
 
 
