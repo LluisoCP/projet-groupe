@@ -9,6 +9,8 @@ use App\Entity\Produit;
 use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Message;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class PagesController extends AbstractController
 {
@@ -46,6 +48,24 @@ class PagesController extends AbstractController
                 'listeCat' => $listeCat
             ]
         );
+    }
+
+    /**
+     * @Route("/results", name="results", methods={"GET", "POST"})
+     */
+    public function results(Request $request, ProduitRepository $produit_repository, SerializerInterface $serializer)
+    {
+        $price = $request->query->get('price');
+        $order = $request->query->get('order');
+        $produits = $produit_repository->findByPrice($price, $order);
+
+        $jsonProduits = $serializer->serialize($produits, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($jsonProduits, 200, ['Content-Type' => 'application/json']);
     }
 
     /**

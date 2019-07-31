@@ -18,7 +18,7 @@ ul {
     padding: 0;
 }
 i   {    
-    color:goldenrod;
+    color:rgba(253, 249, 40, 0.87);
     padding-left: 5px;
     }
 
@@ -49,17 +49,22 @@ i   {
         }
 
 #footer {
-    background-color: rgba(4, 52, 122, 0.87)   
-}
-#footer a   {
-            color: rgba(253, 249, 40, 0.87);
-            /*font-size: 75%;*/
+        background-color: rgba(4, 52, 122, 0.87);
+        }
+        
+#footer h5  {
+            color: goldenrod
             }
 
+.lien   {
+    color: rgba(253, 249, 40, 0.87);
+    /*font-size: 75%;*/
+    }
+        
 /*Page produit par tag */
-.produit-tag {
-    object-fit: contain; /*or cover*/
-}
+.produit-tag    {
+                object-fit: contain; /*or cover*/
+                }
 
 /*Accordion et formulaire*/
 #accordion {
@@ -70,7 +75,11 @@ i   {
     padding: 10px 0;
     font-size: 2em;
 }
-
+/*
+article     {
+            margin: 10px;
+            }
+*/
 .accordion-item {
     display: none;
 }
