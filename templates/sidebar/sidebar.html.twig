@@ -13,8 +13,8 @@
         <div id="menu-etiquettes" class="d-flex flex-wrap justify-content-around">
             {% for tag in tags %}
                 <h3 class="my-1">
-                    <span class="badge badge-warning">
-                        <a href="{{ path('tag_produits', {nom:tag.nom}) }}">{{ tag.nom }}</a>
+                    <span class="badge badge-primary">
+                        <a href="{{ path('tag_produits', {nom:tag.nom}) }}" class="lien">{{ tag.nom }}</a>
                     </span>
                 </h3>
             {% endfor %}

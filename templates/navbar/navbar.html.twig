@@ -4,7 +4,7 @@
     </span>
 {% endif %}
 <nav id="nav" class="navbar navbar-expand-lg container">
-    <a class="navbar-brand" href="{{ path('home') }}">Projet.com</a>
+    <a class="navbar-brand lien" href="{{ path('home') }}">Projet.com</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,8 +13,8 @@
         
         {% for lien in liens %}
             <li class="nav-item">
-                <a href="{{ path(lien.href) }}" class="nav-link">
-                    <i class="{{ lien.icon }}"></i> {{ lien.lib }}
+                <a href="{{ path(lien.href) }}" class="nav-link lien">
+                    <i class="{{ lien.icon }} lien"></i> {{ lien.lib }}
                 </a>
             </li>
         {% endfor %}

@@ -7,46 +7,46 @@
                     <h5>Catégorie</h5>
                     <ul>
                         {% for categorie in categories %}
-                        <li><a href="{{ path('categorie_produits', {nom:categorie.nom}) }}">{{ categorie.nom }}</a></li>
+                        <li><a href="{{ path('categorie_produits', {nom:categorie.nom}) }}" class="lien">{{ categorie.nom }}</a></li>
                         {% endfor %}
                     </div>
                     <div class="text-center col-3">
                         <h5>Contacte</h5>
                     <ul>
-                        <li><a href="{{ path('service_client') }}">Service Client</a></li>
-                        <li><a href="{{ path('service_apres_vente') }}">Service Après-vente</a></li>
-                        <li><a href="{{ path('service_technique') }}">Service Technique</a></li>
-                        <li><a href="{{ path('service_presse') }}">Espace Presse</a></li>
+                        <li><a href="{{ path('service_client') }}" class="lien">Service Client</a></li>
+                        <li><a href="{{ path('service_apres_vente') }}" class="lien">Service Après-vente</a></li>
+                        <li><a href="{{ path('service_technique') }}" class="lien">Service Technique</a></li>
+                        <li><a href="{{ path('service_presse') }}" class="lien">Espace Presse</a></li>
                     </ul>
                 </div>
                 <div class="text-center col-3">
                     <h5>A propos</h5>
                     <ul>
-                        <li><a href="{{ path('about') }}">Qui sommes nous?</a></li>
-                        <li><a href="{{ path('services') }}">Nos services</a></li>
-                        <li><a href="{{ path('conditions_vente') }}">CGV</a></li>
-                        <li><a href="{{ path('mentions_legales') }}">Information légales</a></li>
+                        <li><a href="{{ path('about') }}" class="lien">Qui sommes nous?</a></li>
+                        <li><a href="{{ path('services') }}" class="lien">Nos services</a></li>
+                        <li><a href="{{ path('conditions_vente') }}" class="lien">CGV</a></li>
+                        <li><a href="{{ path('mentions_legales') }}" class="lien">Information légales</a></li>
                     </ul>
                 </div>
                 <div class="text-center col-3">
                     <h5>Projet.com et vous</h5>
                     <ul>
-                        <li><a href="{{ path('nos_valeurs') }}">Nos valeurs</a></li>
-                        <li><a href="{{ path('recrutement') }}">Projet.com recrute</a></li>
-                        <li><a href="{{ path('fidelite') }}">Notre programme fidélité</a></li>
-                        <li><a href="{{ path('cookies') }}">Politique des cookies</a></li>
-                        <li><a href="{{ path('gerer_cookies') }}">Gérer vos cookies</a></li>
+                        <li><a href="{{ path('nos_valeurs') }}" class="lien">Nos valeurs</a></li>
+                        <li><a href="{{ path('recrutement') }}" class="lien">Projet.com recrute</a></li>
+                        <li><a href="{{ path('fidelite') }}" class="lien">Notre programme fidélité</a></li>
+                        <li><a href="{{ path('cookies') }}" class="lien">Politique des cookies</a></li>
+                        <li><a href="{{ path('gerer_cookies') }}" class="lien">Gérer vos cookies</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div id="icons" class="col-12 row">
-                Retrouvez nous sur:<br />
-                <a href="#" class="icon"><i class="fab fa-facebook-square"></i></a>
-                <a href="#" class="icon"><i class="fab fa-twitter-square"></i></a>
-                <a href="#" class="icon"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="icon"><i class="fab fa-twitch"></i></a>
-                <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+            <div class="col-12 row d-flex justify-content-center">
+                <h5>Retrouvez nous sur: </h5><br />
+                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                <a href="#"><i class="fab fa-twitter-square"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-twitch"></i></a>
+                <a href="#"><i class="fab fa-instagram lien"></i></a>
             </div>
         </div>
 
