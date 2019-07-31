@@ -1,10 +1,6 @@
 $.noConflict();
 jQuery(document).ready(function ($) {
     
-    // Demarrer le slider (qui ne marche pas)
-    // $('input[type="range"]').rangeslider();
-
-    // A la place, j'enregistre le prix choisi
     $('#maxprice').change(function() {
         $('#price-selected').text($(this).val() + '€')
     });

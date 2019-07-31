@@ -148,7 +148,7 @@ input[type="range"] {
     }
 }
 #spinning {
-    animation: 1s linear infinite spinner;
+    animation: .5s linear infinite spinner;
     color: white;
     font-size: 2em;
 }

@@ -43,7 +43,7 @@ class PanierController extends AbstractController
 
     /**
      * @isGranted("ROLE_USER")
-     * @Route("ajout_panier", name="ajout_panier")
+     * @Route("ajout_panier", name="ajout_panier", methods={"POST"})
      */
     public function ajouter(Request $request, ProduitRepository $produit_repository, PanierRepository $panier_repository)
     {

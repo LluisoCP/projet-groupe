@@ -3,28 +3,44 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-{% for produit in liste %}  
-    <div class='row'>
+<div class='row'>
+    {% for produit in liste %}  
         <article class="col-6 card">
             <img src="{{ produit.image ? asset('img/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
             class="card-img-top">
         </article>
         <div class="card_body col-6">
             <h1 class="text-center">{{produit.nom}}</h1>
-                <ul class="list-group-item">
-                    <li>Référence: {{produit.reference}}</li>
-                    <li>marque: {{produit.marque}}</li>
-                    <li>modèle: {{produit.modele}}</li>
-                    <li>Description: {{produit.description}}</li>
-                    <li>Stock: {{produit.stock}}</li>
-                    <li>Prix: {{produit.prix}}€</li>
-                </ul>
-                <a href="{{ path('produit', {'id': produit.id}) }}" class="btn btn-success">Voir Produit</a>
-            </div>
-            {% else %}
-    <p class="alert alert-info">
-        Aucun produit actuellement disponible.
-    </p>
-        {% endfor %}
-    </div>
+            <ul class="list-group-item">
+                <li>Référence: {{produit.reference}}</li>
+                <li>marque: {{produit.marque}}</li>
+                <li>modèle: {{produit.modele}}</li>
+                <li>Description: {{produit.description}}</li>
+                <li>Stock: {{produit.stock}}</li>
+                <li>Prix: {{produit.prix}}€</li>
+            </ul>
+            <a href="{{ path('produit', {'id': produit.id}) }}" class="btn btn-success">Voir Produit</a>
+            <hr>
+            <form action="{{ path('ajout_panier') }}" method="POST">
+                <div class="d-flex flex-column">
+                    <h4 class="text-center my-4">Commander ce produit</h4>
+                    <div class="form-group row">
+                        <label for="quantite" class="text-right col-sm-4 col-form-label">Quantité</label>
+                        <div class="col-sm-4">
+                            <input type="number" min="1" max="{{ produit.stock }}" class="form-control" id="quantite" name="quantite">
+                            <input type="hidden" name="id" value="{{ produit.id }}">
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="btn btn-success" type="submit" value="Commander">
+                        </div>
+                    </div>
+                </div>
+        </form>
+        </div>
+    {% else %}
+        <p class="alert alert-info">
+            Aucun produit actuellement disponible.
+        </p>
+    {% endfor %}
+</div>
 {% endblock %}
