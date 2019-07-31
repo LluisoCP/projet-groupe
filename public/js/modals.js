@@ -1,27 +1,31 @@
 $.noConflict();
 jQuery(document).ready(function ($) {
-    const triggers = $('.triggers'),
-        cancel = $('#cancel'),
-        deleter = $('#delete'),
-        modal = $('#modal');
+    const forms = $('.form'),
+          cancel = $('#cancel'),
+          deleter = $('#delete'),
+          modal = $('#modal');
 
-    triggers.click(function () {
-        let next = $(this).data("target");
-        modal.fadeIn(200, function () {
-            deleter.attr("href", next);
-        })
+    forms.submit(function (e) {
+        e.preventDefault();
+        $(this).addClass('send');
+        modal.fadeIn(200);
     });
     cancel.click(function () {
         modal.fadeOut(200, function () {
-            deleter.attr("href", "");
+            $('form.send').removeClass('send');
         });
     })
-    jQuery(document).on('keyup', function (e) {
+    $(document).on('keyup', function (e) {
         if ((e.key == "Escape" || e.key == 27) && modal.css('display') == 'block') {
             modal.fadeOut(200, function () {
-                deleter.attr("href", "");
+                $('form.send').removeClass('send');
             });
         }
     });
-
+    deleter.click(function(){
+        modal.fadeOut(200, function() {
+            $('form.send').submit()
+            $('form.send').removeClass('send'); //cal?
+        })
+    })
 })
