@@ -69,6 +69,7 @@ jQuery(document).ready(function ($) {
                             console.log(article);*/
                         
                         const article = document.createElement('article');
+                        article.className='col-12 col-sm-6 col-md-4 card py-2';
                         results.appendChild(article);
 
                         article.innerHTML=
