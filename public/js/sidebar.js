@@ -22,8 +22,7 @@ jQuery(document).ready(function ($) {
 
     const   trigger = $('#lance-recherche');
     const   results = document.getElementsByClassName('resultat')[0];
-            //results = $('.resultat');
-            console.log(results);
+            console.log('élément'+results);
     trigger.on('click', function() {
         //results.html('');
         //results.empty();
@@ -34,7 +33,7 @@ jQuery(document).ready(function ($) {
             console.log('Prix: ' + price + ' en ordre ' + order + ' avec mot ' + nom);
             // nom = nom.length == 0 ? 'null' : nom;
         $.ajax({
-            url: 'produits/results',
+            url: 'http://127.0.0.1:8000/produits/results',
             type: 'GET',
             dataType: 'json',
             data: {
@@ -47,7 +46,7 @@ jQuery(document).ready(function ($) {
                 results.innerHTML='<div id="spinner" class="text-center mt-5"><i id="spinning" class="fas fa-spinner"></i></div>';
             },
             success: function(products) {
-                console.log(products);
+                console.log('resultat: '+products);
                 if (!products.length) {
                     //results.append('<p class="text-center mt-3" style="color:red;">Pas de produits</p>');
                     results.innerHTML='<p class="text-center mt-3" style="color:red;">Pas de produits</p>';
@@ -56,22 +55,11 @@ jQuery(document).ready(function ($) {
                     
                     for (let produit of products) 
                     {
-                        /*results.append
-                        //(
-                            article.className = "col-4 card py-2";
-                            
-                            const image = document.createElement('img');
-                            image.src = 'file:///C:/Users/Etudiant/Desktop/projet-groupe/public/img/produits/'+produit.image;
-                            image.className = "card-img-top";
-                            
-                            article.appendChild(image);
-                            console.log(image)
-                            console.log(article);*/
                         
                         const article = document.createElement('article');
                         article.className='col-12 col-sm-6 col-md-4 card py-2';
                         results.appendChild(article);
-
+                        console.log(article);
                         article.innerHTML=
                             '<img src="/img/produits/'+produit.image+'" class="card-img-top pic_taille">'+
                             '<div class="card_body">'+
@@ -92,7 +80,7 @@ jQuery(document).ready(function ($) {
 
             },
             error: function(err) {
-                console.log(err);
+                console.log('erreur'+err);
             },
             complete: function() {
                 console.log('Terminé.');
