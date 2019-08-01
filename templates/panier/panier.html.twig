@@ -7,11 +7,11 @@
 <!-- Modal -->
 <div id="modal">
     <div>
-        <h4 class="text-center">Supprimer un produit</h4>
-        <h6 class="text-center">Êtes-vous sûr de supprimer ce produit?</h3>
+        <h4 class="text-center">Confirmer suppression</h4>
+        <h6 class="text-center">Êtes-vous sûr de supprimer ce <span>produit</span>?</h6>
         <div id="buttons">
             <button id="cancel" class="btn btn-sm btn-secondary mb-2">Annuler</button>
-            <button id="delete" class="btn btn-sm btn-danger mb-2">Supprimer</button>
+            <a href="#" id="delete" class="btn btn-sm btn-danger mb-2">Supprimer</a href="#">
         </div>
     </div>
 </div>
@@ -72,7 +72,7 @@
     </table>
     <div class="d-flex justify-content-center">
         <a href="#" class="btn mx-1 btn-success">Payer mon panier</a>
-        <a href="{{ path('vider_panier') }}" class="btn mx-1 btn-danger">Vider mon panier</a>
+        <a id="vider" href="{{ path('vider_panier') }}" class="btn mx-1 btn-danger">Vider mon panier</a>
     </div>
 {% else %}
     <h3 class="text-center mt-5">Votre panier est vide.</h3>

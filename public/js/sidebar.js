@@ -19,9 +19,6 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    // $('#accordion h2').click(function() {
-    //     $('#results').fadeOut();
-    // })
 
     const   trigger = $('#lance-recherche'),
             results = $('.resultat');
