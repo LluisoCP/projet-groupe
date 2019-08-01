@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Ici on affichera les produits qui appartient à une catégorie.</h1>
+    <h1 class="text-center">Produits {{ categorie }}</h1>
     <div class="row resultat">
         {% for produit in produits %}
         <div class="col-12 col-md-6">

@@ -3,6 +3,7 @@
 {% block title %}Etiquettes{% endblock %}
 
 {% block body %}
+    <div class="resultat">
     <h1 class="admin-title text-center">ETIQUETTES</h1>
     <div class="d-flex justify-content-center">
         <a class="btn btn-primary" href="{{ path('tag_new') }}">Ajouter Etiquette</a>
@@ -32,5 +33,5 @@
         {% endfor %}
         </tbody>
     </table>
-    
+    </div>
 {% endblock %}
