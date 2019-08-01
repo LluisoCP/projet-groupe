@@ -186,20 +186,13 @@ input[type="range"] {
 #minipanier-content .panier-vide {
     color: black;
     margin: 0;
+    padding: 3px 5px;
 }
 #minipanier-complet #edit-mini {
     padding: 5px 0;
 }
 #minipanier-complet #edit-mini a  {
     border-color: black;
-}
-#table-panier a {
-    color: red;
-    font-weight: bold;
-    transition: color .2s linear;
-}
-#table-panier a:hover {
-    color: rgb(131, 30, 30);
 }
 /* Alertes quand on reussit à faire une action (Flash)*/
 #flash {
@@ -211,6 +204,10 @@ input[type="range"] {
     max-width: 80%;
     font-size: 2em;
     border: 2px solid black;
+    padding: 1.5em 1em;
+}
+#flash .close-flash {
+    font-size: 1.5em;
 }
 
 /* Modals pour confirmer les suppresions */
@@ -287,6 +284,14 @@ input[type="range"] {
     background-color: #ffc107;
 }
 
+#table-panier a {
+    color: rgb(7, 99, 237);
+    font-weight: bold;
+    transition: color .2s linear;
+}
+#table-panier a:hover {
+    color: rgb(77, 140, 234);
+}
 /* Admin */
 
 /* Tables d'affichage admin*/

@@ -24,7 +24,7 @@
         {% for type, messages in app.session.flashbag.all() %}
 			{% for message in messages %}
 				<div id="flash" class="alert alert-{{ type }} alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+					<button type="button" class="close" data-dismiss="alert"><span class="close-flash" aria-hidden="true">&times;</span><span
 							class="sr-only">Close</span></button>
 					{{ message | raw }}
 				</div>
