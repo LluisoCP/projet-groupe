@@ -109,7 +109,7 @@ class PanierController extends AbstractController
             $em->flush();
         }
         $this->addFlash('success', 'Votre panier a bien été mis ajour.');
-        return $this->redirectToRoute('panier'); //Re-diriger vers où??
+        return $this->redirectToRoute('mon_panier'); //Re-diriger vers où??
     }
 
     /**

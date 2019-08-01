@@ -29,7 +29,7 @@ class NavbarController extends AbstractController
             $liens = [
                 ['href' => 'about',         'lib' => 'About',           'icon' => 'fab fa-product-hunt'],
                 ['href' => 'contact',       'lib' => 'Contact',         'icon' => 'fas fa-plus-circle'],
-                ['href' => 'panier',        'lib' => 'Mon panier',      'icon' => 'fas fa-shopping-basket'],
+                ['href' => 'mon_panier',        'lib' => 'Mon panier',      'icon' => 'fas fa-shopping-basket'],
                 ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off']
             ];
             $bienvenue = 'Bienvenue à votre espace projet.com';
