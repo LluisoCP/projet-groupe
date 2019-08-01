@@ -3,6 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+<div class="resultat">
     <h1 class="text-center">Saisissez vos donées pour créer un compte</h1>
 
     {{ form_start(registrationForm) }}
@@ -18,4 +19,5 @@
 
         <button class="btn btn-success">Register</button>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}

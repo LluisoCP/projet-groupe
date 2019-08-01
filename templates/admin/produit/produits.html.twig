@@ -4,6 +4,7 @@
 
 {% block body %}
 <h1 class="admin-title text-center">PRODUITS</h1>
+<div class="resultat">
     <div class="d-flex justify-content-center">
         <a class="btn btn-primary" href="{{ path('createProduit') }}">Ajouter Produit</a>
     </div>
@@ -50,5 +51,5 @@
         {% endfor %}
     </tbody>
 </table>
-
+</div>
 {% endblock %}
