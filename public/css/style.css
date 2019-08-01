@@ -35,6 +35,10 @@ i   {
         color:goldenrod;
         }
 
+.pic_taille {
+            max-width: 275px;
+            }
+
 #header {
     background-color: rgba(4, 52, 122, 0.87)  
 }

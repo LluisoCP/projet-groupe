@@ -20,12 +20,13 @@ jQuery(document).ready(function ($) {
     });
 
 
-    const   trigger = $('#lance-recherche'),
-            results = $('.resultat');
-            
+    const   trigger = $('#lance-recherche');
+    const   results = document.getElementsByClassName('resultat')[0];
+            //results = $('.resultat');
+            console.log(results);
     trigger.on('click', function() {
-        results.html('');
-        results.empty();
+        //results.html('');
+        //results.empty();
         $('#no-products').remove();
         let order = $('input[type="radio"]:checked').val(),
             price = $('#maxprice').val(),
@@ -43,45 +44,49 @@ jQuery(document).ready(function ($) {
             },
             beforeSend: function () {
                 
-                results.append('<div id="spinner" class="text-center mt-5"><i id="spinning" class="fas fa-spinner"></i></div>');
+                results.innerHTML='<div id="spinner" class="text-center mt-5"><i id="spinning" class="fas fa-spinner"></i></div>';
             },
             success: function(products) {
                 console.log(products);
                 if (!products.length) {
-                    results.append('<p class="text-center mt-3" style="color:red;">Pas de produits</p>');
+                    //results.append('<p class="text-center mt-3" style="color:red;">Pas de produits</p>');
+                    results.innerHTML='<p class="text-center mt-3" style="color:red;">Pas de produits</p>';
                 } else {
 
                     
                     for (let produit of products) 
                     {
-                        //results.append
+                        /*results.append
                         //(
+                            article.className = "col-4 card py-2";
+                            
+                            const image = document.createElement('img');
+                            image.src = 'file:///C:/Users/Etudiant/Desktop/projet-groupe/public/img/produits/'+produit.image;
+                            image.className = "card-img-top";
+                            
+                            article.appendChild(image);
+                            console.log(image)
+                            console.log(article);*/
+                        
                         const article = document.createElement('article');
-                        article.className = "col-4 card py-2";
-                        
-                        const image = document.createElement('img');
-                        image.src = 'file:///C:/Users/Etudiant/Desktop/projet-groupe/public/img/produits/'+produit.image;
-                        image.className = "card-img-top";
-                        
-                        article.appendChild(image);
-
+                        article.className='col-12 col-sm-6 col-md-4 card py-2';
                         results.appendChild(article);
+
+                        article.innerHTML=
+                            '<img src="/img/produits/'+produit.image+'" class="card-img-top pic_taille">'+
+                            '<div class="card_body">'+
+                                '<h5>'+ produit.nom +'</h5>'+
+                                '<ul class="list-group-item">'+
+                                    '<li>modele: '+ produit.reference +'</li>'+
+                                    '<li>marque: '+ produit.marque +'</li>'+
+                                    '<li>Description: '+ produit.description +'</li>'+
+                                    '<li>Stock: '+ produit.stock +'</li>'+
+                                    '<li>Prix: '+ produit.prix +'€</li>'+
+                                    '<a href="produits/produit/'+produit.id+'" class="btn btn-success">Voir Produit</a>'+
+                                '</ul>'+
+                            '</div>'+
+                        '</article>';
                         
-                        /*results.append('<article class="col-4 card py-2">');
-                            '<img src="file:///C:/Users/Etudiant/Desktop/projet-groupe/public/img/produits/'+produit.image+'" class="card-img-top">',
-                            '<div class="card_body">',
-                                '<h5>'+ produit.nom +'</h5>',
-                                '<ul class="list-group-item">',
-                                    '<li>modele: '+ produit.reference +'</li>',
-                                    '<li>marque: '+ produit.marque +'</li>',
-                                    '<li>Description: '+ produit.description +'</li>',
-                                    '<li>Stock: '+ produit.stock +'</li>',
-                                    '<li>Prix: '+ produit.prix +'€</li>',
-                                '</ul>',
-                                '<a href="produits/produit/'+produit.id+'" class="btn btn-success">Voir Produit</a>',
-                            '</div>',
-                        '</article>'
-                        )*/
                     }
                 }
 
