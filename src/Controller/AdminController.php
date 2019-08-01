@@ -26,7 +26,7 @@ class AdminController extends AbstractController
 
     /** HOME ADMIN  */
 
-    
+
     /**
      * @Route("/", name="admin", methods={"GET"})
      */
@@ -170,7 +170,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("panier/new", name="panier_new", methods={"GET","POST"})
+     * @Route("/panier/new", name="panier_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -186,7 +186,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('admin_paniers');
         }
 
-        return $this->render('client/new.html.twig', [
+        return $this->render('panier/new.html.twig', [
             'panier' => $panier,
             'form' => $form->createView(),
         ]);
