@@ -12,15 +12,13 @@
             <tr class="text-center">
                 <th>Id</th>
                 <th>Email</th>
-                <th>Roles</th>
-                <th>Nom</th>
-                <th>Prenom</th>
+                <th>Nom, Prenom</th>
                 <th>Adresse</th>
                 <th>Ville</th>
-                <th>Cp</th>
+                <th>CP</th>
                 <th>Telephone</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
+                <th>Créé le</th>
+                <th>Dernière Modification</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -29,9 +27,7 @@
             <tr class="text-center">
                 <td>{{ client.id }}</td>
                 <td>{{ client.email }}</td>
-                <td>{{ client.roles ? client.roles|json_encode : '' }}</td>
-                <td>{{ client.nom }}</td>
-                <td>{{ client.prenom }}</td>
+                <td>{{ client.nom }}, {{ client.prenom }}</td>
                 <td>{{ client.adresse }}</td>
                 <td>{{ client.ville }}</td>
                 <td>{{ client.cp }}</td>

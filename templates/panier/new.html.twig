@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Nouveau Panier{% endblock %}
 
 {% block body %}
-    <h1 class="admin-title text-center">Créer un nouveau Panier</h1>
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
 
-    {{ include('panier/_form.html.twig') }}
-
-    <a class="btn btn-primary" href="{{ path('admin_paniers') }}">Retourner à la liste</a>
+        <h1 class="admin-title text-center">Créer un nouveau Panier</h1>
+        
+        {{ include('panier/_form.html.twig') }}
+        
+        <a class="btn btn-primary" href="{{ path('admin_paniers') }}">Retourner à la liste</a>
+    </div>
+</div>
 {% endblock %}

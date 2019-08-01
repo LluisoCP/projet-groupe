@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\ProduitType;
 use App\Service\FileUploader;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 /**
  * @Route("/produits")
  */
@@ -54,10 +54,11 @@ class ProduitController extends AbstractController
 
         return new Response($jsonProduits, 200, ['Content-Type' => 'application/json']);
     }
-    //Ici il faudrait ajouter @isGranted("ROLE_ADMIN")
+    
     /**
+     * @isGranted("ROLE_ADMIN")
      * @Route("/create", name="createProduit", methods={"GET", "POST"})
-     */
+     *//*
     public function createProduit(Request $request, FileUploader $uploader)
     {
         $produit = new Produit();
@@ -84,14 +85,14 @@ class ProduitController extends AbstractController
              * unset($deet);
              * $produit = new Produit();
              * $form = $this->createForm(ProduitType::class, $produit);
-             */
+             *//*
         }
 
 
         return $this->render('produit/create.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
+    }*/
 
     /**
      * @Route("/produit/{id}", name="produit", methods={"GET", "POST"})
