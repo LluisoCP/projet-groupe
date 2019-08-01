@@ -15,6 +15,7 @@ use App\Entity\Panier;
 use App\Entity\Client;
 use App\Form\PanierType;
 use App\Form\ProduitType;
+use App\Form\ClientType;
 
 /**
  * @isGranted("ROLE_ADMIN")
@@ -22,6 +23,10 @@ use App\Form\ProduitType;
  */
 class AdminController extends AbstractController
 {
+
+    /** HOME ADMIN  */
+
+    
     /**
      * @Route("/", name="admin", methods={"GET"})
      */
@@ -37,6 +42,9 @@ class AdminController extends AbstractController
             'paniers' => $paniers
         ]);
     }
+
+
+    /** CLIENT  */
 
     /**
      * @Route("/clients", name="admin_clients", methods={"GET"})
@@ -58,8 +66,33 @@ class AdminController extends AbstractController
         $client = $client_repository->find($id);
         return $this->render('client/show.html.twig', [
             'client' => $client,
+            'nom' => $client->getNom()
         ]);
     }
+
+    /**
+     * @Route("/{id}/edit", name="client_edit", methods={"GET","POST"})
+     */
+    public function edit_client(Request $request, ClientRepository $client_repository, $id): Response
+    {
+        $client = $client_repository->find($id);
+        $form = $this->createForm(ClientType::class, $client);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('client_index');
+        }
+
+        return $this->render('client/edit.html.twig', [
+            'client' => $client,
+            'nom' => $client->getNom(),
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**  PRODUIT */
 
     /**
      * @Route("/produits", name="admin_produits", methods={"GET"})
@@ -67,14 +100,14 @@ class AdminController extends AbstractController
     public function produits(ProduitRepository $produit_repository)
     {
         $produits = $produit_repository->findAll();
-        return $this->render('admin/produit/produits.html.twig', [
+        return $this->render('produit/produits.html.twig', [
             'produits' => $produits,
         ]);
 
     }
 
     /**
-     * @Route("/{id}/edit", name="produit_edit", methods={"GET","POST"})
+     * @Route("/produits/{id}/edit", name="produit_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Produit $produit): Response
     {
@@ -99,7 +132,7 @@ class AdminController extends AbstractController
     public function produit(ProduitRepository $produit_repository, $id)
     {
         $produit = $produit_repository->find($id);
-        return $this->render('admin/produit/produit.html.twig', [
+        return $this->render('produit/produit.html.twig', [
             'produit' => $produit,
             'nom'     => $produit->getNom()
         ]);
@@ -117,11 +150,13 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('produit_index');
+        return $this->redirectToRoute('admin_produits');
     }
 
 
 
+
+    /** PANIER */
     /**
      * @Route("/paniers", name="admin_paniers", methods={"GET"})
      */
@@ -135,7 +170,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="panier_new", methods={"GET","POST"})
+     * @Route("panier/new", name="panier_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -172,6 +207,7 @@ class AdminController extends AbstractController
 
         return $this->render('panier/edit.html.twig', [
             'panier' => $panier,
+            'nom' => $panier-> getId(),
             'form' => $form->createView()
         ]);
     }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Projet.com{% endblock %}</title>
+    {# view port width #}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {# FontAwesome #}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ropa+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    {# Bootstrap #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {# jQuery UI css ?? #}
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+    <script src="https://kit.fontawesome.com/1c34d428df.js"></script>
+</head>
+
+<body>
+
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div id="flash" class="alert alert-{{ type }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span class="close-flash"
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                {{ message | raw }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <header id="header">
+
+        {% block header %}
+            <div class="titre">
+                <h1><a href="{{ path('home') }}" class="titre">Projet.com</a></h1>
+            </div>
+            {{ render(controller('App\\Controller\\NavbarController::show')) }}
+        {% endblock %}
+
+    </header>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div id="admin" class="col-12 py-3">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+
+    {% block footer %}
+    {{ render(controller('App\\Controller\\FooterController::index')) }}
+    {% endblock %}
+
+    {# BootstrapJS #}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    {# <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    {# jQuery #}
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> #}
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    {# jQuery UI #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    {# pour faire marcher le slider du prix #}
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.min.js"></script> -->
+    <script src="{{ asset('js/sidebar.js') }}"></script>
+    <script src="{{ asset('js/minipanier.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    {% block javascripts %}
+    {% endblock %}
+</body>
+
+</html>

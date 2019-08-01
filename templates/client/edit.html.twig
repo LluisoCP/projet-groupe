@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Client{% endblock %}
+{% block title %}Editer Client{% endblock %}
 
 {% block body %}
-    <h1>Edit Client</h1>
+    <h1 class="admin-title text-center">Editer client <span class="admin-nom">{{ nom }}</span></h1>
 
-    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('client/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-    <a href="{{ path('client_index') }}">back to list</a>
+    <div class="my-2">
+        <a class="btn btn-primary" href="{{ path('client_index') }}">Retourner à la liste</a>
+    </div>
 
     {{ include('client/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Panier index{% endblock %}
+{% block title %}Paniers{% endblock %}
 
 {% block body %}
-    <h1>Panier index</h1>
+    <h1 class="admin-title text-center">PANIERS</h1>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary" href="{{ path('panier_new') }}">Ajouter Panier</a>
+    </div>
 
-    <table class="table">
+    <table class="table table-striped admin-table">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>Id</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
@@ -19,7 +22,7 @@
         </thead>
         <tbody>
         {% for panier in paniers %}
-            <tr>
+            <tr class="text-center">
                 <td>{{ panier.id }}</td>
                 <td>{{ panier.createdAt ? panier.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ panier.updatedAt ? panier.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
@@ -27,17 +30,16 @@
                 <td>{{ panier.montant }}</td>
                 <td>{{ panier.prixUnite }}</td>
                 <td>
-                    <a href="{{ path('panier_show', {'id': panier.id}) }}">show</a>
-                    <a href="{{ path('panier_edit', {'id': panier.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('panier_show', {'id': panier.id}) }}">Voir</a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('panier_edit', {'id': panier.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
+            <tr class="text-center">
+                <td colspan="7">Pas de paniers!</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('panier_new') }}">Create new</a>
 {% endblock %}

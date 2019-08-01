@@ -1,13 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block title %}Client index{% endblock %}
+{% block title %}Clients{% endblock %}
 
 {% block body %}
-    <h1>Client index</h1>
-
-    <table class="table">
+    <h1 class="admin-title text-center">CLIENTS</h1>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary" href="{{ path('client_new') }}">Create new</a>
+    </div>
+    <table class="table table-striped admin-table">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
@@ -24,7 +26,7 @@
         </thead>
         <tbody>
         {% for client in clients %}
-            <tr>
+            <tr class="text-center">
                 <td>{{ client.id }}</td>
                 <td>{{ client.email }}</td>
                 <td>{{ client.roles ? client.roles|json_encode : '' }}</td>
@@ -37,17 +39,16 @@
                 <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('admin_client', {'id': client.id}) }}">show</a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
-            <tr>
-                <td colspan="13">no records found</td>
+            <tr class="text-center">
+                <td colspan="13">Pas de clients!</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('client_new') }}">Create new</a>
 {% endblock %}

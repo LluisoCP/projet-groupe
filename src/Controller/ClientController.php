@@ -58,25 +58,6 @@ class ClientController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="client_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Client $client): Response
-    {
-        $form = $this->createForm(ClientType::class, $client);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('client_index');
-        }
-
-        return $this->render('client/edit.html.twig', [
-            'client' => $client,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="client_delete", methods={"DELETE"})
