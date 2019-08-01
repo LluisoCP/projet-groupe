@@ -13,10 +13,10 @@ class NavbarController extends AbstractController
         if ($auth->isGranted("ROLE_ADMIN"))
         {
             $liens = [
-                // ['href' => 'admin_clients',       'lib' => 'Clients',         'icon' => 'fas fa-users'],
+                ['href' => 'admin_clients',     'lib' => 'Clients',         'icon' => 'fas fa-users'],
                 ['href' => 'admin_produits',    'lib' => 'Produits',        'icon' => 'fab fa-product-hunt'],
-                // ['href' => 'admin_paniers',    'lib' => 'Paniers',      'icon' => 'fas fa-shopping-basquet'],
-                ['href' => 'createProduit',     'lib' => 'Ajout Produit',   'icon' => 'fas fa-plus-circle'],
+                ['href' => 'admin_paniers',     'lib' => 'Paniers',         'icon' => 'fas fa-shopping-basket'],
+                // ['href' => 'createProduit',     'lib' => 'Ajout Produit',   'icon' => 'fas fa-plus-circle'],
                 ['href' => 'tag_index',         'lib' => 'Etiquettes',      'icon' => 'fas fa-tags'],
                 ['href' => 'categorie_index',   'lib' => 'Categories',      'icon' => 'fas fa-layer-group'],
                 ['href' => 'app_logout',        'lib' => 'Logout',          'icon' => 'fas fa-power-off'],

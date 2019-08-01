@@ -10,6 +10,7 @@ use App\Repository\ProduitRepository;
 use App\Entity\Panier;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
+use App\Form\PanierType;
 
 class PanierController extends AbstractController
 {
@@ -21,25 +22,41 @@ class PanierController extends AbstractController
 
 
     /**
-     * @Route("/", name="panier_index", methods={"GET"})
-     */
+     * @Route("/paniers", name="panier_index", methods={"GET"})
+     *//*
     public function index(PanierRepository $panierRepository): Response
     {
-        return $this->render('panier/panier.html.twig', [
+        return $this->render('panier/index.html.twig', [
             'paniers' => $panierRepository->findAll(),
         ]);
     }
-
+*/
+    
     /**
-     * @Route("/{id}", name="panier_show", methods={"GET"})
-     */
+     * @Route("paniers/{id}", name="panier_show", methods={"GET"})
+     *//*
     public function show(Panier $panier): Response
     {
         return $this->render('panier/show.html.twig', [
             'panier' => $panier,
         ]);
     }
-    
+    */
+    /**
+     * @Route("/mon_panier", name="mon_panier")
+     */
+    public function mon_panier()
+    {
+        $user = $this->getUser();
+        $paniers = $user->getPaniers();
+        return $this->render( 'panier/panier.html.twig', [
+            'user' => $user,
+            'paniers' => $paniers,
+            'titre' => 'Mon Panier'
+        ]);
+    }
+
+
     public function mini()
     {
         $user = $this->getUser();
@@ -52,7 +69,7 @@ class PanierController extends AbstractController
 
     /**
      * @isGranted("ROLE_USER")
-     * @Route("ajout_panier", name="ajout_panier", methods={"POST"})
+     * @Route("/ajout_panier", name="ajout_panier", methods={"POST"})
      */
     public function ajouter(Request $request, ProduitRepository $produit_repository, PanierRepository $panier_repository)
     {
@@ -144,7 +161,7 @@ class PanierController extends AbstractController
 
     /**
      * @isGranted("ROLE_USER")
-     * @Route("modifier_panier", name="modifier_panier", methods={"POST"})
+     * @Route("/modifier_panier", name="modifier_panier", methods={"POST"})
      */
     public function modifier(Request $request, PanierRepository $panier_repository)
     {

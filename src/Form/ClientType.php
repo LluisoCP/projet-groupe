@@ -6,6 +6,7 @@ use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ClientType extends AbstractType
 {
@@ -13,7 +14,11 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
+            ->add('roles', CheckboxType::class, [
+                'label' => 'Roles',
+                'multiple' => true,
+                'expanded' => true
+            ])
             ->add('password')
             ->add('nom')
             ->add('prenom')

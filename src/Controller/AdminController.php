@@ -10,6 +10,12 @@ use App\Repository\ProduitRepository;
 use App\Repository\PanierRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Produit;
+use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Panier;
+use App\Entity\Client;
+use App\Form\PanierType;
+use App\Form\ProduitType;
+
 /**
  * @isGranted("ROLE_ADMIN")
  * @Route("/admin")
@@ -17,7 +23,7 @@ use App\Entity\Produit;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/index", name="admin", methods={"GET"})
+     * @Route("/", name="admin", methods={"GET"})
      */
     public function index(ClientRepository $client_repository, ProduitRepository $produit_repository, PanierRepository $panier_repository)
     {
@@ -38,32 +44,163 @@ class AdminController extends AbstractController
     public function clients(ClientRepository $client_repository)
     {
         $clients = $client_repository->findAll();
-        return $this->render('admin/clients.html.twig', [
+        return $this->render('client/index.html.twig', [
             'clients' => $clients,
         ]);
 
     }
+
+    /**
+     * @Route("/clients/{id}", name="admin_client", methods={"GET"})
+     */
+    public function client(ClientRepository $client_repository, $id)
+    {
+        $client = $client_repository->find($id);
+        return $this->render('client/show.html.twig', [
+            'client' => $client,
+        ]);
+    }
+
     /**
      * @Route("/produits", name="admin_produits", methods={"GET"})
      */
     public function produits(ProduitRepository $produit_repository)
     {
         $produits = $produit_repository->findAll();
-        return $this->render('admin/produits.html.twig', [
+        return $this->render('admin/produit/produits.html.twig', [
             'produits' => $produits,
         ]);
 
     }
+
+    /**
+     * @Route("/{id}/edit", name="produit_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Produit $produit): Response
+    {
+        $form = $this->createForm(ProduitType::class, $produit);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('produit_index');
+        }
+
+        return $this->render('produit/edit.html.twig', [
+            'produit' => $produit,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/produits/{id}", name="admin_produit", methods={"GET"})
+     */
+    public function produit(ProduitRepository $produit_repository, $id)
+    {
+        $produit = $produit_repository->find($id);
+        return $this->render('admin/produit/produit.html.twig', [
+            'produit' => $produit,
+            'nom'     => $produit->getNom()
+        ]);
+    }
+
+
+    /**
+     * @Route("/{id}", name="produit_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Produit $produit): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $produit->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($produit);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('produit_index');
+    }
+
+
+
     /**
      * @Route("/paniers", name="admin_paniers", methods={"GET"})
      */
-    public function paniers(PanierRepository $panier_repository)
+    public function paniers(PanierRepository $panier_repository) :Response
     {
         $paniers = $panier_repository->findAll();
-        return $this->render('admin/paniers.html.twig', [
+        return $this->render('panier/index.html.twig', [
             'paniers' => $paniers,
         ]);
 
+    }
+
+    /**
+     * @Route("/new", name="panier_new", methods={"GET","POST"})
+     */
+    public function new(Request $request): Response
+    {
+        $panier = new Panier();
+        $form = $this->createForm(PanierType::class, $panier);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($panier);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_paniers');
+        }
+
+        return $this->render('client/new.html.twig', [
+            'panier' => $panier,
+            'form' => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/paniers/{id}/edit", name="panier_edit", methods={"GET","POST"})
+     */
+    public function edit_panier(Request $request, PanierRepository $panier_repository, $id)
+    {
+        $panier = $panier_repository->find($id);
+        $form = $this->createForm(PanierType::class, $panier);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('admin_paniers');
+            }
+
+        return $this->render('panier/edit.html.twig', [
+            'panier' => $panier,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/paniers/{id}", name="panier_show", methods={"GET"})
+     */
+    public function panier( PanierRepository $panier_repository, $id): Response
+    {
+        $panier = $panier_repository->find($id);
+        return $this->render('panier/show.html.twig', [
+            'panier' => $panier,
+        ]);
+    }
+
+
+    /**
+     * @Route("/panier/{id}", name="panier_delete", methods={"DELETE"})
+     */
+    public function delete_panier(Request $request, PanierRepository $panier_repository, $id): Response
+    {
+        $panier = $panier_repository->find($id);
+        if ($this->isCsrfTokenValid('delete' . $panier->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($panier);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_paniers');
     }
     /**
      * @Route("/ajout_produit", name="admin_ajout_produits", methods={"GET", "POST"})
