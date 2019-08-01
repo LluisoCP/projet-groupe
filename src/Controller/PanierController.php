@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\ProduitRepository;
 use App\Entity\Panier;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Response;
 
 class PanierController extends AbstractController
 {
@@ -18,23 +19,27 @@ class PanierController extends AbstractController
         $this->panier_repository = $panier_repository;
     }
 
+
     /**
-     * @isGranted("ROLE_USER")
-     * @Route("/panier", name="panier")
+     * @Route("/", name="panier_index", methods={"GET"})
      */
-    public function index()
+    public function index(PanierRepository $panierRepository): Response
     {
-        $user = $this->getUser();
-        $paniers = $user->getPaniers();
-        // dump(empty($paniers));
-        // dd($paniers);
         return $this->render('panier/panier.html.twig', [
-            'user'      => $user,
-            'paniers'   => $paniers,
-            'titre'     => 'Mon Panier'
+            'paniers' => $panierRepository->findAll(),
         ]);
     }
 
+    /**
+     * @Route("/{id}", name="panier_show", methods={"GET"})
+     */
+    public function show(Panier $panier): Response
+    {
+        return $this->render('panier/show.html.twig', [
+            'panier' => $panier,
+        ]);
+    }
+    
     public function mini()
     {
         $user = $this->getUser();

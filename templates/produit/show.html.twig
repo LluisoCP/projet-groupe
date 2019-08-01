@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class='row'>
-    {% for produit in liste %}  
+    {% if produit %}  
         <article class="col-6 card">
             <img src="{{ produit.image ? asset('img/produits/') ~ produit.image : asset('img/produits/default.jpg') }}"
             class="card-img-top">
@@ -48,6 +48,6 @@
         <p class="alert alert-info">
             Aucun produit actuellement disponible.
         </p>
-    {% endfor %}
+    {% endif %}
 </div>
 {% endblock %}
