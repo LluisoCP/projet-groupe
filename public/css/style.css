@@ -151,9 +151,17 @@ input[type="range"] {
         transform: rotateZ(360deg);
     }
 }
+.resultat {
+    position: relative;
+}
+#spinner {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 #spinning {
     animation: .5s linear infinite spinner;
-    color: white;
+    color: rgb(7, 99, 237);
     font-size: 2em;
 }
 #results {
@@ -297,7 +305,9 @@ input[type="range"] {
     color: rgb(77, 140, 234);
 }
 /* Admin */
-
+#admin {
+    background-color: rgb(244, 239, 225);
+}
 /* Tables d'affichage admin*/
 .admin-table {
     font-size: 1.4em;
@@ -308,4 +318,5 @@ input[type="range"] {
 }
 .admin-title {
     font-weight: bold;
+    padding: 20px 0;
 }
