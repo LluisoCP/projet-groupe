@@ -122,6 +122,7 @@ class AdminController extends AbstractController
 
         return $this->render('produit/edit.html.twig', [
             'produit' => $produit,
+            'nom' => $produit->getNom(),
             'form' => $form->createView(),
         ]);
     }
