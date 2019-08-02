@@ -56,45 +56,6 @@ class ProduitController extends AbstractController
     }
     
     /**
-     * @isGranted("ROLE_ADMIN")
-     * @Route("/create", name="createProduit", methods={"GET", "POST"})
-     *//*
-    public function createProduit(Request $request, FileUploader $uploader)
-    {
-        $produit = new Produit();
-        $form = $this->createForm(ProduitType::class, $produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form['image']->getData();
-            // $image = $produit->getImage();
-            $filename = $uploader->upload($image);
-            $produit->setImage($filename);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($produit);
-            $em->flush();
-            
-            $this->addFlash('success', 'Un nouveau produit a été ajouté.');
-
-            // 1. Rediect:
-            return $this->redirectToRoute('home');
-            /**
-             * 2. Display same page: (sans handleRequest())
-             * unset($form);
-             * unset($deet);
-             * $produit = new Produit();
-             * $form = $this->createForm(ProduitType::class, $produit);
-             *//*
-        }
-
-
-        return $this->render('produit/create.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }*/
-
-    /**
      * @Route("/produit/{id}", name="produit", methods={"GET", "POST"})
      */
     public function show($id, ProduitRepository $produit)
