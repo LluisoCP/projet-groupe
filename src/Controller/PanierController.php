@@ -156,7 +156,7 @@ class PanierController extends AbstractController
 
         $this->addFlash('success', 'Ce produit a bien été spprimé de votre panier.');
 
-        return $this->redirectToRoute('panier'); //Re-diriger vers où??
+        return $this->redirectToRoute('mon_panier'); //Re-diriger vers où??
     }
 
     /**
@@ -177,7 +177,7 @@ class PanierController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        return $this->redirectToRoute('panier'); //Re-diriger vers où??
+        return $this->redirectToRoute('mon_panier'); //Re-diriger vers où??
     }
 
     
