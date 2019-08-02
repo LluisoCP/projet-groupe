@@ -18,7 +18,9 @@ class ProduitType extends AbstractType
         $builder
             ->add('reference')
             ->add('nom')
-            ->add('image', FileType::class)
+            ->add('image', FileType::class, [
+                'data_class' => null
+            ])
             ->add('prix')
             ->add('description')
             ->add('stock')

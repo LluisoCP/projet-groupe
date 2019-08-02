@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Nouvelle Etiquette{% endblock %}
 
 {% block body %}
-    <h1 class="admin-title text-center">Créer une nouvelle etiquette</h1>
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        <h1 class="admin-title text-center">Créer une nouvelle etiquette</h1>
 
-    {{ include('tag/_form.html.twig') }}
+        {{ include('tag/_form.html.twig') }}
 
-    <a class="btn btn-primary" href="{{ path('tag_index') }}">Retourner à la liste</a>
+        <a class="btn btn-primary" href="{{ path('tag_index') }}">Retourner à la liste</a>
+    </div>
+</div>
 {% endblock %}

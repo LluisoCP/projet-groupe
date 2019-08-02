@@ -1,37 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Categories{% endblock %}
 
 {% block body %}
-    <div class="resultat">
-    <h1 class="admin-title text-center">CATEGORIES</h1>
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-primary" href="{{ path('categorie_new') }}">Ajouter Catégorie</a>
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        
+        <div class="resultat">
+            <h1 class="admin-title text-center">CATEGORIES</h1>
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-primary" href="{{ path('categorie_new') }}">Ajouter Catégorie</a>
+            </div>
+            <table class="table table-striped admin-table">
+                <thead>
+                    <tr class="text-center">
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categorie in categories %}
+                    <tr class="text-center">
+                        <td>{{ categorie.id }}</td>
+                        <td>{{ categorie.nom }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" href="{{ path('categorie_show', {'id': categorie.id}) }}">Voir</a>
+                            <a class="btn btn-sm btn-danger" href="{{ path('categorie_edit', {'id': categorie.id}) }}">Edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="text-center">
+                        <td colspan="3">Pas de catégories!</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
     </div>
-    <table class="table table-striped admin-table">
-        <thead>
-            <tr class="text-center">
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for categorie in categories %}
-            <tr class="text-center">
-                <td>{{ categorie.id }}</td>
-                <td>{{ categorie.nom }}</td>
-                <td>
-                    <a class="btn btn-sm btn-success" href="{{ path('categorie_show', {'id': categorie.id}) }}">Voir</a>
-                    <a class="btn btn-sm btn-danger" href="{{ path('categorie_edit', {'id': categorie.id}) }}">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr class="text-center">
-                <td colspan="3">Pas de catégories!</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
+</div>
 {% endblock %}

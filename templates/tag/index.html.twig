@@ -1,37 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Etiquettes{% endblock %}
 
 {% block body %}
-    <div class="resultat">
-    <h1 class="admin-title text-center">ETIQUETTES</h1>
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-primary" href="{{ path('tag_new') }}">Ajouter Etiquette</a>
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        
+    
+        <div class="resultat">
+        <h1 class="admin-title text-center">ETIQUETTES</h1>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary" href="{{ path('tag_new') }}">Ajouter Etiquette</a>
+        </div>
+        <table class="table table-striped admin-table">
+            <thead>
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for tag in tags %}
+                <tr class="text-center">
+                    <td>{{ tag.id }}</td>
+                    <td>{{ tag.nom }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-success" href="{{ path('tag_show', {'id': tag.id}) }}">Voir</a>
+                        <a class="btn btn-sm btn-danger" href="{{ path('tag_edit', {'id': tag.id}) }}">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="text-center">
+                    <td colspan="3">Pas d'etiquettes!</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
     </div>
-    <table class="table table-striped admin-table">
-        <thead>
-            <tr class="text-center">
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tag in tags %}
-            <tr class="text-center">
-                <td>{{ tag.id }}</td>
-                <td>{{ tag.nom }}</td>
-                <td>
-                    <a class="btn btn-sm btn-success" href="{{ path('tag_show', {'id': tag.id}) }}">Voir</a>
-                    <a class="btn btn-sm btn-danger" href="{{ path('tag_edit', {'id': tag.id}) }}">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr class="text-center">
-                <td colspan="3">Pas d'etiquettes!</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div>
+</div>
 {% endblock %}

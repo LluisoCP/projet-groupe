@@ -5,8 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
+ * @UniqueEntity("reference", message="Il y a un produit avec cette référence.")
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -45,6 +49,9 @@ class Produit
     private $updated_at;
 
     /**
+     * @Assert\Positive(
+     *  message = "Le prix d'un produit doit être supérieur à zero."
+     * )
      * @ORM\Column(type="float")
      */
     private $prix;
@@ -55,6 +62,9 @@ class Produit
     private $description;
 
     /**
+     * @Assert\PositiveOrZero(
+     *  message = "Le stock ne peut pas être inférieur à zero."
+     * )
      * @ORM\Column(type="integer")
      */
     private $stock;

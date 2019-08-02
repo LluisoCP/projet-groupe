@@ -1,11 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Nouveau Client{% endblock %}
 
 {% block body %}
-    <h1 class="admin-title text-center">Créer un nouveau Client</h1>
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
 
-    {{ include('client/_form.html.twig') }}
-
-    <a class="btn btn-primary" href="{{ path('client_index') }}">Retourner à la liste</a>
+        <h1 class="admin-title text-center">Créer un nouveau Client</h1>
+        
+        {{ include('client/_form.html.twig') }}
+        
+        <a class="btn btn-primary" href="{{ path('client_index') }}">Retourner à la liste</a>
+    </div>
+</div>
 {% endblock %}
