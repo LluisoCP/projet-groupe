@@ -52,7 +52,7 @@ jQuery(document).ready(function ($) {
                     results.innerHTML='<p class="text-center mt-3" style="color:red;">Pas de produits</p>';
                 } else {
 
-                    
+                    results.className="resultat row";
                     for (let produit of products) 
                     {
                         
