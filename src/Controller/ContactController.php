@@ -25,6 +25,7 @@ class ContactController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
+            $this->addFlash('success', 'Votre message a bien été envoyé.');
 
             // 1. Rediect:
             return $this->redirectToRoute('home');

@@ -28,23 +28,23 @@ class ContactType extends AbstractType
             ->add('nom', TextType::class, [
                 'constraints' => new Length([
                     'min'             => 2,
-                    'minMessage'      => 'Le contenu doit contenir au mois {{ limit }} caractères.',
+                    'minMessage'      => 'Le nom doit contenir au mois {{ limit }} caractères.',
                     'max'             => 32,
-                    'maxMessage'      => 'Le contenu ne peut pas contenir plus de {{ limit }} caractères.'
+                    'maxMessage'      => 'Le nom ne peut pas contenir plus de {{ limit }} caractères.'
                 ])
             ])
             ->add('prenom', TextType::class, [
                 'constraints' => new Length([
-                    'min'             => 10,
-                    'minMessage'      => 'Le contenu doit contenir au mois {{ limit }} caractères.',
+                    'min'             => 2,
+                    'minMessage'      => 'Le prénom doit contenir au mois {{ limit }} caractères.',
                     'max'             => 32,
-                    'maxMessage'      => 'Le contenu ne peut pas contenir plus de {{ limit }} caractères.'
+                    'maxMessage'      => 'Le prénom ne peut pas contenir plus de {{ limit }} caractères.'
                 ])
             ])
             ->add('organisation', TextType::class, [
                 'constraints' => new Length([
-                    'min'             => 10,
-                    'minMessage'      => 'Le contenu doit contenir au mois {{ limit }} caractères.',
+                    'min'             => 2,
+                    'minMessage'      => 'L\'organisation doit contenir au mois {{ limit }} caractères.',
                     'max'             => 32,
                     'maxMessage'      => 'Le contenu ne peut pas contenir plus de {{ limit }} caractères.'
                 ])
@@ -52,9 +52,9 @@ class ContactType extends AbstractType
             ->add('telephone', TextType::class, [
                 'constraints' => new Length([
                     'min'             => 10,
-                    'minMessage'      => 'Le contenu doit contenir au mois {{ limit }} caractères.',
+                    'minMessage'      => 'Le téléphone doit contenir au mois {{ limit }} caractères.',
                     'max'             => 16,
-                    'maxMessage'      => 'Le contenu ne peut pas contenir plus de {{ limit }} caractères.'
+                    'maxMessage'      => 'Le téléphone ne peut pas contenir plus de {{ limit }} caractères.'
                 ])
             ])
             ->add('email', EmailType::class)
